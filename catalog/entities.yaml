@@ -7,5 +7,5 @@ spec:
   targets:
     - ./callee-service/catalog-info.yaml
     - ./person-service/catalog-info.yaml
-#    - ./teams.yaml
+
     

@@ -12,7 +12,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: green
+  owner: team-green
   system: goafabric-system
   providesApis:
     - person-api

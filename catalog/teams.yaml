@@ -1,7 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: blue
+  name: team-blue
+  description: team blue
 spec:
   type: team
   children: []
@@ -11,7 +12,8 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: green
+  name: team-green
+  description: team green
 spec:
   type: team
   children: []
@@ -21,7 +23,8 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
-  name: yellow
+  name: team-yellow
+  description: team yellow
 spec:
   type: team
   children: [ ]

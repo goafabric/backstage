@@ -13,7 +13,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: blue
+  owner: team-blue
   system: goafabric-system
   providesApis:
     - callee-api
