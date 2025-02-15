@@ -1,0 +1,31 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: person-service
+  description: The Person Service for managing person-related data.
+  tags:
+    - spring-boot
+    - java
+    - microservice
+  annotations:
+    github.com/project-slug: goafabric/person-service
+    backstage.io/techdocs-ref: dir:.
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+    prometheus.io/path: "/actuator/prometheus"
+spec:
+  type: service
+  lifecycle: production
+  owner: team-person
+  system: goafabric-system
+  providesApis:
+    - person-api
+  consumesApis:
+    - callee-api
+  dependsOn:
+    - component:callee-service
+  links:
+    - url: https://github.com/goafabric/person-service
+      title: GitHub Repository
+    - url: http://person-service.example.com
+      title: Service URL
