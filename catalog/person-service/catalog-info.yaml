@@ -9,14 +9,10 @@ metadata:
     - microservice
   annotations:
     github.com/project-slug: goafabric/person-service
-    backstage.io/techdocs-ref: dir:.
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "8080"
-    prometheus.io/path: "/actuator/prometheus"
 spec:
   type: service
   lifecycle: production
-  owner: team-person
+  owner: green
   system: goafabric-system
   providesApis:
     - person-api

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: goafabric-services
+  description: Collection of goafabric services
+spec:
+  targets:
+    - ./callee-service/catalog-info.yaml
+    - ./person-service/catalog-info.yaml
+#    - ./teams.yaml
+    

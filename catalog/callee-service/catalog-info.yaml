@@ -9,14 +9,11 @@ metadata:
     - microservice
   annotations:
     github.com/project-slug: goafabric/callee-service
-    backstage.io/techdocs-ref: dir:.
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "8080"
-    prometheus.io/path: "/actuator/prometheus"
+
 spec:
   type: service
   lifecycle: production
-  owner: team-callee
+  owner: blue
   system: goafabric-system
   providesApis:
     - callee-api
