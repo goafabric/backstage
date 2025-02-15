@@ -111,3 +111,6 @@ kubernetes:
 permission:
   # setting this to `false` will disable permissions
   enabled: true
+
+techRadar:
+  url: https://github.com/goafabric/example-konstruction-kit/blob/refactoring/helm/infra/techradar/data/config.json
