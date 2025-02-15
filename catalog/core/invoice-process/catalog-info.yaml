@@ -1,0 +1,29 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: invoice-process
+  description: The fundamental core app of the system
+  tags:
+    - spring-boot
+    - java
+    - microservice
+  annotations:
+    github.com/project-slug: goafabric/invoice-process
+
+spec:
+  type: service
+  lifecycle: production
+  owner: team-blue
+  system: goafabric-system
+  consumesApis:
+    - core-api
+    - catalog-api
+  dependsOn:
+    - component:core-service
+    - component:catalog-service
+  links:
+    - url: https://github.com/goafabric/invoice-process
+      title: GitHub Repository
+    - url: https://v2202402203466256255.megasrv.de/invoice-process/
+      title: Service URL
+

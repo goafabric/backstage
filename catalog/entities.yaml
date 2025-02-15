@@ -5,7 +5,13 @@ metadata:
   description: Collection of goafabric services
 spec:
   targets:
-    - ./example/callee-service/catalog-info.yaml
-    - ./example/person-service/catalog-info.yaml
+#    - ./example/callee-service/catalog-info.yaml
+#    - ./example/person-service/catalog-info.yaml
+
+    - ./core/core-fe/catalog-info.yaml
+    - ./core/core-service/catalog-info.yaml
+    - ./core/catalog-service/catalog-info.yaml
+    - ./core/invoice-process/catalog-info.yaml
+
 
     
