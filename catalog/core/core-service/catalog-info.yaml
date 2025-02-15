@@ -38,6 +38,7 @@ metadata:
     - microservice
   annotations:
     github.com/project-slug: goafabric/core-service
+    github.com/actions: goafabric/core-service
     backstage.io/techdocs-ref: dir:.
     backstage.io/api-ref: url:http://localhost:50800/v3/api-docs
 spec:
