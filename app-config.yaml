@@ -87,4 +87,4 @@ permission:
   enabled: true
 
 techRadar:
-  url: https://github.com/goafabric/example-konstruction-kit/blob/refactoring/helm/infra/techradar/data/config.json
+  url: https://github.com/goafabric/backstage/blob/main/catalog/techradar/config.json
