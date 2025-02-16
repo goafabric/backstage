@@ -2,35 +2,6 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: core-service
-  description: The fundamental core app of the system
-  tags:
-    - spring-boot
-    - java
-    - microservice
-  annotations:
-    github.com/project-slug: goafabric/core-service
-    backstage.io/api-ref: url:http://localhost:50800/v3/api-docs
-
-
-spec:
-  type: service
-  lifecycle: production
-  owner: team-blue
-  system: goafabric-system
-  providesApis:
-    - core-api
-  links:
-    - url: https://github.com/goafabric/core-service
-      title: GitHub Repository
-    - url: https://v2202402203466256255.megasrv.de/ore/
-      title: Service URL
-
----
-
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: core-service
   description: Core Service responsible for core application logic.
   tags:
     - spring-boot
