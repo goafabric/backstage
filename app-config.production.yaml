@@ -36,6 +36,7 @@ auth:
   providers:
     guest: {}
 
+
 catalog:
   import:
     entityFilename: catalog-info.yaml
@@ -53,7 +54,3 @@ catalog:
 
     - type: file
       target: /app/catalog/resources.yaml
-
-permission:
-  # setting this to `false` will disable permissions
-  enabled: false
