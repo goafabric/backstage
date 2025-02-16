@@ -14,7 +14,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: goafabric-team
+  owner: team-blue
   providesApis:
     - core-api
   dependsOn:
