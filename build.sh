@@ -6,4 +6,4 @@ docker buildx create --name mybuilder --use && docker buildx build --platform li
 
 #docker image build . -f packages/backend/Dockerfile --tag ${IMAGE_NAME} && docker push ${IMAGE_NAME}
 
-docker run --rm -it -p 7007:7007 backstage:1.0.0-SNAPSHOT
+docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.0-SNAPSHOT
