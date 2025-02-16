@@ -13,7 +13,7 @@ spec:
   type: service
   lifecycle: production
   owner: team-green
-  system: goafabric-system
+  
   providesApis:
     - person-api
   consumesApis:

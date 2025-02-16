@@ -14,9 +14,10 @@ spec:
   type: service
   lifecycle: production
   owner: team-blue
-  system: goafabric-system
   providesApis:
     - catalog-api
+  dependsOn:
+    - resource:catalog-db
   links:
     - url: https://github.com/goafabric/catalog-service
       title: GitHub Repository

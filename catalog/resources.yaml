@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: core-db
+  annotations:
+    backstage.io/database: "postgres"
+    postgres.instance: "my-postgres-cluster"
+    postgres.database: "core"
+spec:
+  type: database
+  owner: devops
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: catalog-db
+  annotations:
+    backstage.io/database: "postgres"
+    postgres.instance: "my-postgres-cluster"
+    postgres.database: "catalog"
+spec:
+  type: database
+  owner: devops
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: kafka
+  annotations:
+    kafka.apache.org/cluster: "my-kafka-cluster"
+spec:
+  type: kafka
+  owner: devops

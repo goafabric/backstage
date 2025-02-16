@@ -14,13 +14,14 @@ spec:
   type: service
   lifecycle: production
   owner: team-blue
-  system: goafabric-system
-  consumesApis:
-    - core-api
-    - catalog-api
+  
+#  consumesApis:
+#    - core-api
+#    - catalog-api
   dependsOn:
     - component:core-service
     - component:catalog-service
+    - resource:kafka
   links:
     - url: https://github.com/goafabric/invoice-process
       title: GitHub Repository

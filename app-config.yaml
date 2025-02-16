@@ -74,6 +74,9 @@ catalog:
       rules:
         - allow: [User, Group]
 
+    - type: file
+      target: ../../catalog/resources.yaml
+
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options

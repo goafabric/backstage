@@ -13,7 +13,7 @@ spec:
   type: service
   lifecycle: production
   owner: team-yellow
-  system: goafabric-system
+  
   consumesApis:
     - core-api
     - catalog-api

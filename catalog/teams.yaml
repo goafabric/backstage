@@ -29,3 +29,14 @@ spec:
   type: team
   children: [ ]
 
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: devops
+  description: team yellow
+spec:
+  type: team
+  children: [ ]
+

@@ -11,14 +11,20 @@ metadata:
     github.com/project-slug: goafabric/core-service
     github.com/actions: goafabric/core-service
     backstage.io/techdocs-ref: dir:.
-    backstage.io/api-ref: url:http://localhost:50800/v3/api-docs
 spec:
   type: service
   lifecycle: production
   owner: goafabric-team
-  system: goafabric-system
   providesApis:
     - core-api
+  dependsOn:
+    - resource:core-db
+    - resource:kafka
+  links:
+    - url: https://github.com/goafabric/core-service
+      title: GitHub Repository
+    - url: https://v2202402203466256255.megasrv.de/core/
+      title: Service URL
 
 ---
 
