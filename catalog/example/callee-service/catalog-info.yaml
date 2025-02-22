@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: callee-service
+  description: 🌱 Very tiny SPRING Service without Persistence
+  tags:
+    - spring-boot
+    - java
+    - microservice
+  annotations:
+    github.com/project-slug: goafabric/callee-service
+
+spec:
+  type: service
+  lifecycle: production
+  owner: team-blue
+  
+  providesApis:
+    - callee-api
+  links:
+    - url: https://github.com/goafabric/callee-service
+      title: GitHub Repository
+    - url: https://v2202402203466256255.megasrv.de/callee/
+      title: Service URL
+

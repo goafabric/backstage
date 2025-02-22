@@ -26,6 +26,8 @@ import { entityPage } from './components/catalog/EntityPage';
 import { searchPage } from './components/search/SearchPage';
 import { Root } from './components/Root';
 
+import { TechRadar } from './components/custom/TechRadar';
+
 import {
   AlertDisplay,
   OAuthRequestDialog,
@@ -95,6 +97,8 @@ const routes = (
     </Route>
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
+
+    <Route path="/tech-radar" element={<TechRadar />} />
   </FlatRoutes>
 );
 
