@@ -13,9 +13,17 @@ yarn dev
 for guest login: ENV NODE_ENV=development
 also needs catalog folder to be added
 
-# config
+# config + catalog
+/catalog
 app-config.yaml
 app-config-production.yaml
+
+# my tech radar
+/packages/app/src/components/Root/Root.tsx
+/packages/app/src/App.tsx
+/packages/app/src/components/custom/
+
+/packages/app/public/custom
 
 # github actions
 https://github.com/backstage/community-plugins/tree/main/workspaces/github-actions/plugins/github-actions
@@ -27,9 +35,3 @@ yarn --cwd packages/backend add @backstage/plugin-auth-backend-module-github-pro
 /packages/backend/src/index.ts
     backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
-# my tech radar
-/packages/app/src/components/Root/Root.tsx
-/packages/app/src/App.tsx
-/packages/app/src/components/custom/
-
-/packages/app/public/custom
