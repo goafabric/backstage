@@ -27,11 +27,11 @@ app-config-production.yaml
 
 # github actions
 https://github.com/backstage/community-plugins/tree/main/workspaces/github-actions/plugins/github-actions
-/packages/src/components/catalog/EntityPage.tsx
 
 yarn --cwd packages/app add @backstage/plugin-github-actions
 yarn --cwd packages/backend add @backstage/plugin-auth-backend-module-github-provider
 
+/packages/src/components/catalog/EntityPage.tsx
 /packages/backend/src/index.ts
     backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
