@@ -6,6 +6,4 @@ docker buildx create --name mybuilder --use && docker buildx build --platform li
 
 #docker image build . -f packages/backend/Dockerfile --tag ${IMAGE_NAME} && docker push ${IMAGE_NAME}
 
-docker run --pull=always --rm -it -p 3000:7007 goafabric/backstage:1.0.0-SNAPSHOT
-
 docker run --pull=always --rm -it -p 3000:7007 -e AUTH_GITHUB_CLIENT_ID=$AUTH_GITHUB_CLIENT_ID -e AUTH_GITHUB_CLIENT_SECRET=$AUTH_GITHUB_CLIENT_SECRET goafabric/backstage:1.0.0-SNAPSHOT
