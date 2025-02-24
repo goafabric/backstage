@@ -1,2 +1,1 @@
 - scaffolding / golden path
-- kafka topics
