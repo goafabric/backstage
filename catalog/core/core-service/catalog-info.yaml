@@ -4,8 +4,6 @@ metadata:
   name: core-service
   description: Core Service responsible for core application logic.
   tags:
-    - spring-boot
-    - java
     - microservice
   annotations:
     github.com/project-slug: goafabric/core-service

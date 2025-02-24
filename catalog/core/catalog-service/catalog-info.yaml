@@ -4,9 +4,7 @@ metadata:
   name: catalog-service
   description: Catalog Application for ICD10, Coverages ...
   tags:
-    - spring-boot
-    - java
-    - microservice
+    - batch
   annotations:
     github.com/project-slug: goafabric/catalog-batch-service
     github.com/actions: goafabric/catalog-batch-service

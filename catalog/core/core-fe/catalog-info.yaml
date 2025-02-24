@@ -4,8 +4,7 @@ metadata:
   name: core-fe
   description: The fundamental core app of the system
   tags:
-    - npm
-    - typescript
+    - microfrontend
   annotations:
     github.com/project-slug: goafabric/core-fe
 

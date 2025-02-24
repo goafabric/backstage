@@ -4,9 +4,7 @@ metadata:
   name: invoice-process
   description: The fundamental core app of the system
   tags:
-    - spring-boot
-    - java
-    - microservice
+    - process
   annotations:
     github.com/project-slug: goafabric/invoice-process
 
