@@ -32,8 +32,8 @@ spec:
       name: Fetch Template
       action: fetch:template
       input:
-        url: ./spring/main
-        targetPath: ./src/main/org/goafabric/${{ parameters.name }}
+        url: https://github.com/goafabric/callee-service/tree/main/src/main/java/org/goafabric/calleeservice
+        targetPath: ./src/main/java/org/goafabric/${{ parameters.name }}
         values:
           name: ${{ parameters.name }}
 
