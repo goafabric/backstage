@@ -20,11 +20,20 @@ spec:
           ui:options:
             rows: 5
   steps:
-    - id: fetch-template
+    - id: fetch-base
       name: Fetch Template
       action: fetch:template
       input:
-        url: ./spring
+        url: ./spring/base
+        values:
+          name: ${{ parameters.name }}
+
+    - id: fetch-main
+      name: Fetch Template
+      action: fetch:template
+      input:
+        url: ./spring/main
+        targetPath: ./src/main/org/goafabric/${{ parameters.name }}
         values:
           name: ${{ parameters.name }}
 
