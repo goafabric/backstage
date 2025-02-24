@@ -1,0 +1,42 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: example-spring-template
+  title: Example Spring Template
+  description: Example Spring Template
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+  steps:
+    - id: fetch-template
+      name: Fetch Template
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+
+
+    - id: compress
+      name: Compress Output
+      action: custom:zip
+      input:
+        outputPath: /Users/andreas/Downloads/${{ parameters.name }}.zip
+        
+
+#  output:
+#    links:
+#      - title: Download Artifact
+#        url: file:///Users/andreas/Downloads/${{ parameters.name }}.zip

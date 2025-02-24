@@ -54,4 +54,26 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 
 backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
+//custom zip 
+import { createZipAction } from './createZipAction';
+import { scaffolderActionsExtensionPoint } from '@backstage/plugin-scaffolder-node/alpha';
+import { createBackendModule } from '@backstage/backend-plugin-api';
+
+const scaffolderModuleCustomExtensions = createBackendModule({
+  pluginId: 'scaffolder',
+  moduleId: 'custom-extensions',
+  register(env) {
+    env.registerInit({
+      deps: {
+        scaffolder: scaffolderActionsExtensionPoint,
+      },
+      async init({ scaffolder }) {
+        scaffolder.addActions(createZipAction());
+      },
+    });
+  },
+});
+
+backend.add(scaffolderModuleCustomExtensions);
+
 backend.start();

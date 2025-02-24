@@ -84,9 +84,15 @@ catalog:
 
     # Local example template
     - type: file
-      target: ../../examples/template/template.yaml
+      target: ../../examples/mytemplate/template.yaml
       rules:
         - allow: [Template]
+
+#    - type: file
+#      target: ../../examples/template/template.yaml
+#      rules:
+#        - allow: [Template]
+
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
 
