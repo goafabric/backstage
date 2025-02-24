@@ -35,3 +35,29 @@ metadata:
 spec:
   type: kafka
   owner: devops
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: practitioner.create
+  partitions: 1
+spec:
+  type: kafka-topic
+  owner: team-blue
+  dependsOn:
+    - resource:kafka
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: organization.create
+  partitions: 1
+spec:
+  type: kafka-topic
+  owner: team-blue
+  dependsOn:
+    - resource:kafka
