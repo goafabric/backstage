@@ -37,6 +37,14 @@ spec:
         values:
           name: ${{ parameters.name }}
 
+    - id: Replace text in file
+      name: Replace
+      action: roadiehq:utils:fs:replace
+      input:
+        files:
+          - file: './src/main/java/org/goafabric/${{ parameters.name }}/Application.java'
+            find: 'package org.goafabric.calleeservice'
+            replaceWith: 'package org.goafabric.${{ parameters.name }}'
 
     - id: compress
       name: Compress Output
