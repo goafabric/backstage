@@ -75,5 +75,6 @@ const scaffolderModuleCustomExtensions = createBackendModule({
 });
 
 backend.add(scaffolderModuleCustomExtensions);
+backend.add(import('@roadiehq/scaffolder-backend-module-utils'));
 
 backend.start();
