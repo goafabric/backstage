@@ -24,7 +24,7 @@ spec:
       name: Fetch Template
       action: fetch:template
       input:
-        url: ./spring/base
+        url: ./content/base
         values:
           name: ${{ parameters.name }}
 
