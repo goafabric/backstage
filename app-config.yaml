@@ -83,10 +83,10 @@ catalog:
       target: ../../catalog/resources.yaml
 
     # Local example template
-#    - type: file
-#      target: ../../catalog/templates/spring/template.yaml
-#      rules:
-#        - allow: [Template]
+    - type: file
+      target: ../../catalog/templates/spring/template.yaml
+      rules:
+        - allow: [Template]
 
 #    - type: file
 #      target: ../../examples/template/template.yaml
