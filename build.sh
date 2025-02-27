@@ -1,4 +1,4 @@
-IMAGE_NAME=goafabric/backstage:1.0.0-SNAPSHOT
+IMAGE_NAME=goafabric/backstage:1.0.1-SNAPSHOT
 
 yarn install --immutable && yarn tsc && yarn build:backend
 
@@ -8,4 +8,4 @@ yarn install --immutable && yarn tsc && yarn build:backend
 
 docker image build . -f packages/backend/Dockerfile --tag ${IMAGE_NAME} && docker push ${IMAGE_NAME}
 
-docker run --pull=always --rm -it -p 3000:7007 -e AUTH_GITHUB_CLIENT_ID=$AUTH_GITHUB_CLIENT_ID -e AUTH_GITHUB_CLIENT_SECRET=$AUTH_GITHUB_CLIENT_SECRET goafabric/backstage:1.0.0-SNAPSHOT
+docker run --pull=always --rm -it -p 3000:7007 -e AUTH_GITHUB_CLIENT_ID=$AUTH_GITHUB_CLIENT_ID -e AUTH_GITHUB_CLIENT_SECRET=$AUTH_GITHUB_CLIENT_SECRET goafabric/backstage:1.0.2-SNAPSHOT
