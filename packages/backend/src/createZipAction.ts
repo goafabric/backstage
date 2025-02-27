@@ -1,6 +1,8 @@
 import { createTemplateAction } from '@backstage/plugin-scaffolder-node';
 import fs from 'fs';
 import path from 'path';
+
+// @ts-ignore
 import archiver from 'archiver';
 
 export function createZipAction() {
@@ -38,7 +40,10 @@ export function createZipAction() {
           resolve();
         });
 
-        archive.on('error', (err) => reject(err));
+        archive.on('error',
+          // @ts-ignore
+          (err) => reject(err)
+        );
 
         archive.pipe(output);
         archive.directory(absInputPath, false);
