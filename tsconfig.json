@@ -10,7 +10,6 @@
   ],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "strict": false,
     "outDir": "dist-types",
     "rootDir": "."
   }
