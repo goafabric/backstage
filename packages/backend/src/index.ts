@@ -55,7 +55,7 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
 //custom zip 
-import { createZipAction } from './createZipAction';
+//import { createZipAction } from './createZipAction';
 import { scaffolderActionsExtensionPoint } from '@backstage/plugin-scaffolder-node/alpha';
 import { createBackendModule } from '@backstage/backend-plugin-api';
 
