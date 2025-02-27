@@ -1,5 +1,3 @@
-- scaffolding / golden path
-- server name  
-- docker image (multiarch or amd)
-- 
+- server name
 - 3rd party integration (istio, argo, kubernetes)
+- scaffolding / golden path
