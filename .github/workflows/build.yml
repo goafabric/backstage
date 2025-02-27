@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22' # Use the Node.js version you need
-          cache: 'yarn' # Automatically cache Yarn dependencies
+          #cache: 'yarn' # Automatically cache Yarn dependencies
 
       - name: Install dependencies
         run: yarn install --immutable && yarn tsc && yarn build:backend --frozen-lockfile
