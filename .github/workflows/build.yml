@@ -23,7 +23,7 @@ jobs:
           cache: 'yarn' # Automatically cache Yarn dependencies
 
       - name: Install dependencies
-        run: yarn install --immutable && yarn tsc && yarn build:backend
+        run: yarn install --immutable && yarn tsc && yarn build:backend --frozen-lockfile
 
       - name: Build the Docker image
         run: |
