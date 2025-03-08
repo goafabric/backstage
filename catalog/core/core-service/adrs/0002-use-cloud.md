@@ -4,10 +4,6 @@
 * Deciders: MyMyselfAndI
 * Date: 2025-03-01
 
-## Status
-
-proposed
-
 ## Context
 
 At it's best currently technical concepts are written,
