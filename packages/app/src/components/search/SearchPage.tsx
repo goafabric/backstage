@@ -25,6 +25,10 @@ import {
 } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
 
+import { AdrSearchResultListItem } from '@backstage-community/plugin-adr';
+import { AdrDocument } from '@backstage-community/plugin-adr-common';
+
+
 const useStyles = makeStyles((theme: Theme) => ({
   bar: {
     padding: theme.spacing(1, 0),
