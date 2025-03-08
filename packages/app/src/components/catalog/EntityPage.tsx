@@ -62,6 +62,8 @@ import {
 import { EntityGithubActionsContent } from '@backstage/plugin-github-actions';
 import { isGithubActionsAvailable } from '@backstage/plugin-github-actions';
 
+import { EntityAdrContent, isAdrAvailable } from '@backstage-community/plugin-adr';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -186,6 +188,9 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
+    </EntityLayout.Route>
+    <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
+          <EntityAdrContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
