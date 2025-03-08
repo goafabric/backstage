@@ -1,4 +1,4 @@
-# Use ADR for documenting Architecture Decissions
+# Use Cloud
 
 ## Status
 
