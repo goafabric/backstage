@@ -1,5 +1,9 @@
 # Use ADR for documenting Architecture Decissions
 
+* Status: proposed
+* Deciders: MyMyselfAndI
+* Date: 2025-03-01
+
 ## Status
 
 proposed
