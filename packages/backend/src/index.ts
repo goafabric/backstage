@@ -59,8 +59,6 @@ import { createZipAction } from './createZipAction';
 import { scaffolderActionsExtensionPoint } from '@backstage/plugin-scaffolder-node/alpha';
 import { createBackendModule } from '@backstage/backend-plugin-api';
 
-//import adr from './plugins/adr';
-
 const scaffolderModuleCustomExtensions = createBackendModule({
   pluginId: 'scaffolder',
   moduleId: 'custom-extensions',
@@ -76,9 +74,6 @@ const scaffolderModuleCustomExtensions = createBackendModule({
   },
 });
 
-//adr
-//const adrEnv = useHotMemoize(module, () => createEnv('adr'));
-//apiRouter.use('/adr', await adr(adrEnv));
 
 backend.add(scaffolderModuleCustomExtensions);
 backend.add(import('@roadiehq/scaffolder-backend-module-utils'));
