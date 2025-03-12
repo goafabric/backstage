@@ -8,6 +8,7 @@ metadata:
   annotations:
     github.com/project-slug: goafabric/catalog-batch-service
     github.com/actions: goafabric/catalog-batch-service
+    backstage.io/adr-location: https://github.com/goafabric/adr/tree/main/catalog-service
 
 spec:
   type: service
