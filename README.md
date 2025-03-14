@@ -35,7 +35,9 @@ yarn --cwd packages/backend add @backstage/plugin-auth-backend-module-github-pro
 /packages/backend/src/index.ts
     backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
+# gitlab
+https://github.com/immobiliare/backstage-plugin-gitlab
+
 # scaffolder plugins
 https://github.com/RoadieHQ/roadie-backstage-plugins/blob/main/plugins/scaffolder-actions/scaffolder-backend-module-utils/README.md
 yarn --cwd packages/backend @roadiehq/scaffolder-backend-module-utils
-
