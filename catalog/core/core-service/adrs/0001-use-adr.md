@@ -1,7 +1,7 @@
-# Use Cloud
-     
-* Status: rejected
-* Deciders: MyMyselfAndI
+# Use ADR for documenting Architecture Decissions
+
+* Status: proposed
+* Deciders: Andreas Mautsch
 * Date: 2025-03-01
 
 ## Context
