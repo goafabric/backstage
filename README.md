@@ -7,7 +7,7 @@ docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.1-SNAPSHOT
 
 # Local run
 yarn install
-yarn dev
+yarn start
 
 # docker file
 for guest login: ENV NODE_ENV=development
