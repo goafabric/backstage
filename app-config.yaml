@@ -86,11 +86,6 @@ catalog:
       rules:
         - allow: [Template]
 
-#    - type: file
-#      target: ../../examples/template/template.yaml
-#      rules:
-#        - allow: [Template]
-
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
 
