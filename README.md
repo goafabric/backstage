@@ -41,3 +41,7 @@ https://github.com/immobiliare/backstage-plugin-gitlab
 # scaffolder plugins
 https://github.com/RoadieHQ/roadie-backstage-plugins/blob/main/plugins/scaffolder-actions/scaffolder-backend-module-utils/README.md
 yarn --cwd packages/backend @roadiehq/scaffolder-backend-module-utils
+    
+# adr
+https://github.com/backstage/community-plugins/blob/HEAD/workspaces/adr/plugins/adr-backend/README.md
+https://www.npmjs.com/package/@backstage-community/plugin-adr
