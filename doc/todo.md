@@ -1,2 +1,4 @@
 - 3rd party integration (istio, argo, kubernetes)
 - scaffolding / golden path
+- nginx authentication, kubernetes deployment
+- openapi integration
