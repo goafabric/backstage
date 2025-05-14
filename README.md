@@ -3,7 +3,7 @@ Mono Repo like approach where configuration sits under /catalog
 Chaged Docker Image to work with Guest Login
 
 # Docker image
-docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.2-SNAPSHOT
+docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.3-SNAPSHOT
 
 # Local run
 yarn install

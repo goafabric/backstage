@@ -6,4 +6,4 @@ _Values_service_port=7007
 
 _Values_health_check_disabled=false
 
-version=1.0.2-SNAPSHOT
+version=1.0.3-SNAPSHOT
