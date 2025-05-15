@@ -17,6 +17,8 @@ spec:
 #  consumesApis:
 #    - core-api
 #    - catalog-api
+  providesApis:
+    - invoice-api
   dependsOn:
     - component:core-service
     - component:catalog-service
@@ -24,5 +26,20 @@ spec:
   links:
     - url: https://github.com/goafabric/invoice-process
       title: GitHub Repository
-    - url: https://v2202402203466256255.megasrv.de/invoice-process/
-      title: Service URL
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: invoice-api
+  description: OpenAPI definition for Core Service.
+  tags:
+    - openapi
+    - invoice-process
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-blue
+  definition:
+    $text: https://github.com/goafabric/invoice-process/blob/refactoring/doc/generated/openapi.json

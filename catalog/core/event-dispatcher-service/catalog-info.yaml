@@ -1,0 +1,38 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: event-dispatcher-service
+  description: Catalog Application for ICD10, Coverages ...
+  tags:
+    - batch
+  annotations:
+    github.com/project-slug: goafabric/catalog-batch-service
+    github.com/actions: goafabric/catalog-batch-service
+    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/main/catalog/core/event-dispatcher-service/adrs
+
+spec:
+  type: service
+  lifecycle: production
+  owner: team-blue
+  providesApis:
+    - event-dispatcher-api
+  dependsOn:
+    - resource:kafka
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: event-dispatcher-api
+  description: OpenAPI definition for Core Service.
+  tags:
+    - openapi
+    - event-dispatcher-service
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-blue
+  definition:
+    $text: https://github.com/goafabric/event-dispatcher-service/blob/refactoring/doc/generated/openapi.json
+

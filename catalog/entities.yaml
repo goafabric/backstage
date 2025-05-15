@@ -12,6 +12,7 @@ spec:
     - ./core/core-service/catalog-info.yaml
     - ./core/catalog-service/catalog-info.yaml
     - ./core/invoice-process/catalog-info.yaml
+    - ./core/event-dispatcher-service/catalog-info.yaml
 
 
     
