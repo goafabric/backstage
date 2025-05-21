@@ -75,11 +75,13 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
           icon={GroupIcon}
         />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
 
         <SidebarItem icon={RadarIcon} to="tech-radar" text="Tech Radar"/>
 
+        {/*
+        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        */}
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

@@ -152,6 +152,10 @@ const serviceEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/ci-cd" title="CI/CD">
+      {cicdContent}
+    </EntityLayout.Route>
+
     <EntityLayout.Route
       path="/kubernetes"
       title="Kubernetes"
@@ -182,14 +186,12 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/docs" title="Docs">
+      {techdocsContent}
+    </EntityLayout.Route>
     <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
           <EntityAdrContent />
     </EntityLayout.Route>
-
-    <EntityLayout.Route path="/ci-cd" title="CI/CD">
-      {cicdContent}
-    </EntityLayout.Route>
-
   </EntityLayout>
 );
 
