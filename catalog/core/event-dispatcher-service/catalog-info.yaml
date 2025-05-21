@@ -34,5 +34,5 @@ spec:
   lifecycle: production
   owner: team-blue
   definition:
-    $text: https://github.com/goafabric/event-dispatcher-service/blob/refactoring/doc/generated/openapi.json
+    $text: https://github.com/goafabric/event-dispatcher-service/blob/develop/doc/generated/openapi.json
 
