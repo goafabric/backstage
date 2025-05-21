@@ -8,7 +8,7 @@ metadata:
   annotations:
     github.com/project-slug: goafabric/catalog-batch-service
     github.com/actions: goafabric/catalog-batch-service
-    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/main/catalog/core/catalog-service/adrs
+    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/core/catalog-service/adrs
 
 spec:
   type: service
@@ -39,5 +39,5 @@ spec:
   lifecycle: production
   owner: team-blue
   definition:
-    $text: https://github.com/goafabric/catalog-batch-service/blob/refactoring/doc/generated/openapi.json
+    $text: https://github.com/goafabric/catalog-batch-service/blob/develop/doc/generated/openapi.json
 

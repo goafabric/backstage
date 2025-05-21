@@ -7,7 +7,7 @@ metadata:
     - process
   annotations:
     github.com/project-slug: goafabric/invoice-process
-    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/main/catalog/core/invoice-process/adrs
+    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/core/invoice-process/adrs
 
 spec:
   type: service
@@ -42,4 +42,4 @@ spec:
   lifecycle: production
   owner: team-blue
   definition:
-    $text: https://github.com/goafabric/invoice-process/blob/refactoring/doc/generated/openapi.json
+    $text: https://github.com/goafabric/invoice-process/blob/develop/doc/generated/openapi.json

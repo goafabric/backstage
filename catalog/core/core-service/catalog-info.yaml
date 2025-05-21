@@ -9,7 +9,7 @@ metadata:
     github.com/project-slug: goafabric/core-service
     github.com/actions: goafabric/core-service
     backstage.io/techdocs-ref: dir:.
-    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/main/catalog/core/core-service/adrs
+    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/core/core-service/adrs
 
 spec:
   type: service
@@ -41,5 +41,5 @@ spec:
   lifecycle: production
   owner: team-blue
   definition:
-    $text: https://github.com/goafabric/core-service/blob/refactoring/doc/generated/openapi.json
+    $text: https://github.com/goafabric/core-service/blob/develop/doc/generated/openapi.json
 
