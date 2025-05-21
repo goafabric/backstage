@@ -9,7 +9,7 @@ metadata:
     github.com/project-slug: goafabric/core-service
     github.com/actions: goafabric/core-service
     backstage.io/techdocs-ref: dir:.
-    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/core/core-service/adrs
+    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/adr/core-service
 
 spec:
   type: service
