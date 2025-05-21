@@ -1,6 +1,6 @@
 # Use Spring Batch for Batch Process
 
-* Status: decided
+* Status: proposed
 * Deciders: Andreas Mautsch
 * Date: 2025-05-10
 
