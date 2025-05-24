@@ -8,6 +8,7 @@ spec:
 #    - ./example/callee-service/catalog-info.yaml
 #    - ./example/person-service/catalog-info.yaml
 
+    - ./core/api-gateway/catalog-info.yaml
     - ./core/core-fe/catalog-info.yaml
     - ./core/core-service/catalog-info.yaml
     - ./core/catalog-service/catalog-info.yaml

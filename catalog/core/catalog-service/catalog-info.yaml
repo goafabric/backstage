@@ -18,6 +18,8 @@ spec:
     - catalog-api
   dependsOn:
     - resource:catalog-db
+  dependencyOf:
+    - component:api-gateway
   links:
     - url: https://github.com/goafabric/catalog-service
       title: GitHub Repository

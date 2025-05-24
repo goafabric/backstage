@@ -18,6 +18,8 @@ spec:
     - event-dispatcher-api
   dependsOn:
     - resource:kafka
+  dependencyOf:
+    - component:api-gateway
 
 ---
 

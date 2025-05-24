@@ -19,8 +19,9 @@ spec:
     - core-api
     - catalog-api
   dependsOn:
-    - component:core-service
-    - component:catalog-service
+    - component:api-gateway
+#    - component:core-service
+#    - component:catalog-service
   links:
     - url: https://github.com/goafabric/core-fe
       title: GitHub Repository

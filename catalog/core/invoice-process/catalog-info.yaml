@@ -23,6 +23,8 @@ spec:
     - component:core-service
     - component:catalog-service
     - resource:kafka
+  dependencyOf:
+    - component:api-gateway
   links:
     - url: https://github.com/goafabric/invoice-process
       title: GitHub Repository

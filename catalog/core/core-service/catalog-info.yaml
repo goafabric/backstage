@@ -20,6 +20,8 @@ spec:
   dependsOn:
     - resource:core-db
     - resource:kafka
+  dependencyOf:
+    - component:api-gateway
   links:
     - url: https://github.com/goafabric/core-service
       title: GitHub Repository
