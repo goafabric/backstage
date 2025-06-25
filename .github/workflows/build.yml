@@ -23,8 +23,16 @@ jobs:
           cache: 'yarn' # Automatically cache Yarn dependencies
 
       - name: Install dependencies
-        run: yarn install --immutable && yarn tsc && yarn build:backend
+        run: yarn install --immutable && yarn tsc --noUnusedLocals && yarn build:backend
+
+      - name: Set Version
+        run: |
+          VERSION=$(jq -r .version package.json)
+          if [ "${{ github.ref_name }}" != "main" ]; then
+            VERSION="${VERSION}-SNAPSHOT"
+          fi
+          echo "IMAGE_TAG=$VERSION" >> $GITHUB_ENV
 
       - name: Build the Docker image
         run: |
-          docker image build . -f packages/backend/Dockerfile --tag goafabric/backstage:1.0.4-SNAPSHOT && docker push goafabric/backstage:1.0.4-SNAPSHOT
+          docker image build . -f packages/backend/Dockerfile --tag goafabric/backstage:1.0.4-SNAPSHOT && docker push goafabric/backstage:$IMAGE_TAG
