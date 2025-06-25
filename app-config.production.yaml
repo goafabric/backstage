@@ -3,6 +3,9 @@ app:
   baseUrl: http://localhost:7007
 
 backend:
+  auth:
+    dangerouslyDisableDefaultAuthPolicy: true
+
   # Note that the baseUrl should be the URL that the browser and other clients
   # should use when communicating with the backend, i.e. it needs to be
   # reachable not just from within the backend host, but from all of your
@@ -15,12 +18,9 @@ backend:
 
   # config options: https://node-postgres.com/apis/client
   database:
-    client: pg
-    connection:
-      host: ${POSTGRES_HOST}
-      port: ${POSTGRES_PORT}
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
+    client: better-sqlite3
+    connection: ':memory:'
+
       # https://node-postgres.com/features/ssl
       # you can set the sslmode configuration option via the `PGSSLMODE` environment variable
       # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
@@ -31,25 +31,26 @@ backend:
 auth:
   providers:
     guest: {}
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+
 
 catalog:
-  # Overrides the default list locations from app-config.yaml as these contain example data.
-  # See https://backstage.io/docs/features/software-catalog/#adding-components-to-the-catalog for more details
-  # on how to get entities into the catalog.
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location]
   locations:
-    # Local example data, replace this with your production config, these are intended for demo use only.
-    # File locations are relative to the backend process, typically in a deployed context, such as in a Docker container, this will be the root
     - type: file
-      target: ./examples/entities.yaml
+      target: /app/catalog/entities-git.yaml
 
-    # Local example template
     - type: file
-      target: ./examples/template/template.yaml
-      rules:
-        - allow: [Template]
-
-    # Local example organizational data
-    - type: file
-      target: ./examples/org.yaml
+      target: /app/catalog/teams.yaml
       rules:
         - allow: [User, Group]
+
+    - type: file
+      target: /app/catalog/resources.yaml

@@ -58,6 +58,13 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
+import {
+  EntityArgoCDOverviewCard,
+  isArgocdAvailable,
+} from '@roadiehq/backstage-plugin-argo-cd';
+
+import { EntityAdrContent, isAdrAvailable } from '@backstage-community/plugin-adr';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -134,12 +141,23 @@ const overviewContent = (
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
 
-    <Grid item md={4} xs={12}>
+    <Grid item md={6} xs={12}>
       <EntityLinksCard />
     </Grid>
+
+    {/*
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+    */}
+
+    <EntitySwitch>
+      <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
+        <Grid item sm={6}>
+          <EntityArgoCDOverviewCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
   </Grid>
 );
 
@@ -149,9 +167,11 @@ const serviceEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
+    {/*
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
+    */}
 
     <EntityLayout.Route
       path="/kubernetes"
@@ -186,6 +206,11 @@ const serviceEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+
+    <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
+      <EntityAdrContent />
+    </EntityLayout.Route>
+
   </EntityLayout>
 );
 
