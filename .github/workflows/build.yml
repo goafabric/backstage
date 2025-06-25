@@ -35,4 +35,4 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker image build . -f packages/backend/Dockerfile --tag goafabric/backstage:1.0.5-SNAPSHOT && docker push goafabric/backstage:$IMAGE_TAG
+          docker image build . -f packages/backend/Dockerfile --tag goafabric/backstage:$IMAGE_TAG && docker push goafabric/backstage:$IMAGE_TAG
