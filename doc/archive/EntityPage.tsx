@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import {
   EntityApiDefinitionCard,
@@ -58,10 +59,8 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
-import {
-  EntityArgoCDOverviewCard,
-  isArgocdAvailable,
-} from '@roadiehq/backstage-plugin-argo-cd';
+import { EntityGithubActionsContent } from '@backstage/plugin-github-actions';
+import { isGithubActionsAvailable } from '@backstage/plugin-github-actions';
 
 import { EntityAdrContent, isAdrAvailable } from '@backstage-community/plugin-adr';
 
@@ -77,13 +76,10 @@ const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
   // You can for example enforce that all components of type 'service' should use GitHubActions
   <EntitySwitch>
-    {/*
-      Here you can add support for different CI/CD services, for example
-      using @backstage-community/plugin-github-actions as follows:
       <EntitySwitch.Case if={isGithubActionsAvailable}>
         <EntityGithubActionsContent />
       </EntitySwitch.Case>
-     */}
+
     <EntitySwitch.Case>
       <EmptyState
         title="No CI/CD available for this entity"
@@ -141,23 +137,12 @@ const overviewContent = (
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
 
-    <Grid item md={6} xs={12}>
+    <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
-
-    {/*
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
-    */}
-
-    <EntitySwitch>
-      <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
-        <Grid item sm={6}>
-          <EntityArgoCDOverviewCard />
-        </Grid>
-      </EntitySwitch.Case>
-    </EntitySwitch>
   </Grid>
 );
 
@@ -167,11 +152,9 @@ const serviceEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
-    {/*
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
-    */}
 
     <EntityLayout.Route
       path="/kubernetes"
@@ -203,16 +186,12 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
-    {/*
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
-    */}
-
     <EntityLayout.Route if={isAdrAvailable} path="/adrs" title="ADRs">
-      <EntityAdrContent />
+          <EntityAdrContent />
     </EntityLayout.Route>
-
   </EntityLayout>
 );
 
@@ -435,3 +414,5 @@ export const entityPage = (
     <EntitySwitch.Case>{defaultEntityPage}</EntitySwitch.Case>
   </EntitySwitch>
 );
+
+

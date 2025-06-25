@@ -54,5 +54,6 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 
 //adr
 backend.add(import('@backstage-community/plugin-adr-backend'));
+backend.add(import('@backstage-community/search-backend-module-adr'));
 
 backend.start();

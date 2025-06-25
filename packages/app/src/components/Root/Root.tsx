@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
+//import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -27,6 +27,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import GroupIcon from '@material-ui/icons/People';
+
+import RadarIcon from '@material-ui/icons/Explore';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -73,8 +75,15 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
           icon={GroupIcon}
         />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+
+        <SidebarItem icon={RadarIcon} to="tech-radar" text="Tech Radar"/>
+        <SidebarItem icon={LibraryBooks} to="catalog-graph?rootEntityRefs%5B%5D=component%3Adefault%2Fapi-gateway&maxDepth=%E2%88%9E&selectedKinds%5B%5D=component&unidirectional=false&mergeRelations=true&direction=LR&showFilters=true&curve=curveMonotoneX" text="Dependencies"/>
+        <SidebarItem icon={LibraryBooks} to="docs/default/component/guidelines" text="Guidelines" />
+
+        {/*
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        */}
+        
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

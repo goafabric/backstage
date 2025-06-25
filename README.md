@@ -31,35 +31,35 @@ app-config-production.yaml
 
 # plugins
 
-## my tech radar
-/packages/app/src/components/Root/Root.tsx
-/packages/app/src/App.tsx
-/packages/app/src/components/custom/
-/packages/app/public/custom
-
-
 ## argcod
 https://roadie.io/backstage/plugins/argo-cd/
 
 yarn workspace app add @roadiehq/backstage-plugin-argo-cd
 - EntityPage.tsx
 
-
  
 ## adr
 https://github.com/backstage/community-plugins/blob/HEAD/workspaces/adr/plugins/adr-backend/README.md
+https://github.com/backstage/community-plugins/blob/da5dc0e46ad6819e12c1ea015c7a44fb643ba6cb/workspaces/adr/plugins/search-backend-module-adr/README.md
 https://www.npmjs.com/package/@backstage-community/plugin-adr
 
-https://github.com/backstage/community-plugins/blob/da5dc0e46ad6819e12c1ea015c7a44fb643ba6cb/workspaces/adr/plugins/search-backend-module-adr/README.md
-=> ommit plugin-search-backend/alpha
-
-
 yarn --cwd packages/backend add @backstage-community/plugin-adr-backend
+- packages/backend/src/index.ts
+
+yarn --cwd packages/backend add @backstage-community/search-backend-module-adr
 - packages/backend/src/index.ts
 
 yarn --cwd packages/app add @backstage-community/plugin-adr
 - EntityPage.tsx
 
+
+## my tech radar
+/packages/app/src/components/custom/
+/packages/app/public/custom
+
+/packages/app/src/components/Root/Root.tsx
+/packages/app/src/App.tsx
+                         
 
 # div plugins
 

@@ -1,0 +1,59 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: example-spring-template
+  title: Example Spring Template
+  description: Example Spring Template
+spec:
+  owner: user:guest
+  type: service
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+  steps:
+    - id: fetch-base
+      name: Fetch Template
+      action: fetch:template
+      input:
+        url: ./content/base
+        values:
+          name: ${{ parameters.name }}
+
+    - id: fetch-main
+      name: Fetch Template
+      action: fetch:template
+      input:
+        url: https://github.com/goafabric/callee-service/tree/develop/src/main/java/org/goafabric/calleeservice
+        targetPath: ./src/main/java/org/goafabric/${{ parameters.name }}
+        values:
+          name: ${{ parameters.name }}
+
+    - id: Replace text in file
+      name: Replace
+      action: roadiehq:utils:fs:replace
+      input:
+        files:
+          - file: './src/main/java/org/goafabric/${{ parameters.name }}/Application.java'
+            find: 'package org.goafabric.calleeservice'
+            replaceWith: 'package org.goafabric.${{ parameters.name }}'
+
+    - id: compress
+      name: Compress Output
+      action: custom:zip
+      input:
+        outputPath: /Users/andreas/Downloads/${{ parameters.name }}.zip
+        
+
+#  output:
+#    links:
+#      - title: Download Artifact
+#        url: file:///Users/andreas/Downloads/${{ parameters.name }}.zip
