@@ -8,4 +8,4 @@ yarn install --immutable && yarn tsc && yarn build:backend
 
 docker image build . -f packages/backend/Dockerfile --tag ${IMAGE_NAME} && docker push ${IMAGE_NAME}
 
-docker run --pull=always --rm -it -p 3000:7007 -e GITHUB_TOKEN=$GITHUB_TOKEN -e ARGOCD_AUTH_TOKEN=$ARGOCD_AUTH_TOKEN $IMAGE_NAME
+docker run --pull=always --rm -it -p 7007:7007 -e GITHUB_TOKEN=$GITHUB_TOKEN -e ARGOCD_AUTH_TOKEN=$ARGOCD_AUTH_TOKEN $IMAGE_NAME
