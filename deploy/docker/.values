@@ -1,0 +1,9 @@
+_Values_root_name="backstage"
+
+_Values_image_repository=goafabric/backstage
+
+_Values_service_port=7007
+
+_Values_health_check_disabled=false
+
+version=1.0.4-SNAPSHOT

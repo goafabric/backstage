@@ -6,7 +6,7 @@ Chaged Docker Image to work with Guest Login
 time npx @backstage/create-app@latest
 
 # Docker image
-docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.3-SNAPSHOT
+docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.4-SNAPSHOT
 
 # Local run
 yarn install
