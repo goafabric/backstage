@@ -1,4 +1,3 @@
 - backstage reverse proxy path for argocd 
 - golden path
 - Roadi github plugin
-- Postgres for other backstage
