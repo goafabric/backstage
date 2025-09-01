@@ -1,3 +1,6 @@
+# update
+yarn backstage-cli versions:bump
+
 # Backstage Demo App
 Mono Repo like approach where configuration sits under /catalog
 Chaged Docker Image to work with Guest Login

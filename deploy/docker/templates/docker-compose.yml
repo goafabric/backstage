@@ -5,7 +5,7 @@ services:
     restart: 'no'
     ports:
       - "${_Values_service_port}:${_Values_service_port}"
-      
+
     volumes:
       - tmp:/tmp
       - applogs:/usr/share/logs

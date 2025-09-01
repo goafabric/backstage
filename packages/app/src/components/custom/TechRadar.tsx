@@ -8,7 +8,7 @@ export const TechRadar = () => (
 
     <Content>
       <iframe
-        src="custom/techradar/index.html"
+        src="https://v2202402203466256255.megasrv.de/techradar/" //src="custom/techradar/index.html"
         width="100%"
         height="100%"
         style={{ border: 'none' }}

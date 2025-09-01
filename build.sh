@@ -1,4 +1,4 @@
-IMAGE_NAME=goafabric/backstage:1.0.4-SNAPSHOT
+IMAGE_NAME=goafabric/backstage:1.0.5-SNAPSHOT
 
 yarn install --immutable && yarn tsc && yarn build:backend
 
