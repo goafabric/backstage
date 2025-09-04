@@ -74,18 +74,16 @@ catalog:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-    - allow: [Component, System, API, Resource, Location]
+    - allow: [Component, System, API, Resource, Location, User, Group]
   locations:
     - type: url
-      target: https://github.com/goafabric/backstage/blob/refactoring/catalog/entities-git.yaml
+      target: https://github.com/goafabric/backstage/blob/develop/catalog/entities-git.yaml
 
     - type: url
-      target: https://github.com/goafabric/backstage/blob/refactoring/catalog/teams.yaml
-      rules:
-        - allow: [User, Group]
+      target: https://github.com/goafabric/backstage/blob/develop/catalog/teams.yaml
 
     - type: url
-      target: https://github.com/goafabric/backstage/blob/refactoring/catalog/resources.yaml
+      target: https://github.com/goafabric/backstage/blob/develop/catalog/resources.yaml
 
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
