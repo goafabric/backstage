@@ -14,7 +14,6 @@ services:
     environment:
       #application
       TZ: Europe/Berlin
-      GITHUB_TOKEN: ${GITHUB_TOKEN}
       ARGOCD_AUTH_TOKEN: ${ARGOCD_AUTH_TOKEN}
 
   nginx:
