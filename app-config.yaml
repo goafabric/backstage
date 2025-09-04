@@ -68,6 +68,7 @@ scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
+  processingInterval: { seconds: 30 }
   import:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
@@ -76,7 +77,6 @@ catalog:
   locations:
     - type: url
       target: https://github.com/goafabric/backstage/blob/refactoring/catalog/entities-git.yaml
-      refreshInterval: { seconds: 30 }
 
     - type: url
       target: https://github.com/goafabric/backstage/blob/refactoring/catalog/teams.yaml
