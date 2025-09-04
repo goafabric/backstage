@@ -75,15 +75,15 @@ catalog:
     - allow: [Component, System, API, Resource, Location]
   locations:
     - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/entities-git.yaml
+      target: https://github.com/goafabric/backstage/blob/refactoring/catalog/entities-git.yaml
 
     - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/teams.yaml
+      target: https://github.com/goafabric/backstage/blob/refactoring/catalog/teams.yaml
       rules:
         - allow: [User, Group]
 
     - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/resources.yaml
+      target: https://github.com/goafabric/backstage/blob/refactoring/catalog/resources.yaml
 
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
