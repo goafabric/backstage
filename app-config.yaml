@@ -76,6 +76,7 @@ catalog:
   locations:
     - type: url
       target: https://github.com/goafabric/backstage/blob/refactoring/catalog/entities-git.yaml
+      refreshInterval: { seconds: 30 }
 
     - type: url
       target: https://github.com/goafabric/backstage/blob/refactoring/catalog/teams.yaml
