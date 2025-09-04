@@ -37,20 +37,20 @@ auth:
 #        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
 
-catalog:
-  import:
-    entityFilename: catalog-info.yaml
-    pullRequestBranchName: backstage-integration
-  rules:
-    - allow: [Component, System, API, Resource, Location]
-  locations:
-    - type: file
-      target: /app/catalog/entities-git.yaml
-
-    - type: file
-      target: /app/catalog/teams.yaml
-      rules:
-        - allow: [User, Group]
-
-    - type: file
-      target: /app/catalog/resources.yaml
+#catalog:
+#  import:
+#    entityFilename: catalog-info.yaml
+#    pullRequestBranchName: backstage-integration
+#  rules:
+#    - allow: [Component, System, API, Resource, Location]
+#  locations:
+#    - type: file
+#      target: /app/catalog/entities-git.yaml
+#
+#    - type: file
+#      target: /app/catalog/teams.yaml
+#      rules:
+#        - allow: [User, Group]
+#
+#    - type: file
+#      target: /app/catalog/resources.yaml
