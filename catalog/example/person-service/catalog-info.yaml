@@ -26,6 +26,7 @@ spec:
   
   providesApis:
     - person-api
+    - person-topic
   dependsOn:
     - component:callee-service
 
@@ -45,3 +46,23 @@ spec:
   owner: team-blue
   definition:
     $text: https://github.com/goafabric/person-service/blob/develop/doc/generated/openapi.json
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: person-topic
+  description: Person Example Topic
+  tags:
+    - kafka-topic
+    - person-service
+spec:
+  type: kafka-topic
+  lifecycle: production
+  owner: devops
+  definition: |
+    topic: person
+    type:  person
+    key: person_id
+    EventData.operation: CREATE | UPDATE | DELETE
