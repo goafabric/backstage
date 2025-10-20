@@ -66,3 +66,23 @@ spec:
     type:  person
     key: person_id
     EventData.operation: CREATE | UPDATE | DELETE
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: person-topic
+  description: Person Example Topic
+  tags:
+    - kafka-topic
+    - person-service
+spec:
+  type: openapi
+  lifecycle: production
+  owner: devops
+  definition: |
+    topic: person
+    type:  person
+    key: person_id
+    EventData.operation: CREATE | UPDATE | DELETE
