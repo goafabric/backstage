@@ -146,7 +146,7 @@ spec:
           summary: Event data about a person or related address.
           contentType: application/json
           payload:
-            $ref: '#/components/schemas/EventData'
+            $ref: '#/components/schemas/EventDataAddress'
           bindings:
             kafka:
               key:
@@ -154,28 +154,22 @@ spec:
                 description: The person ID used as the Kafka message key.
     
       schemas:
-        EventData:
+        EventDataAddress:
           type: object
           properties:
-            type:
-              type: string
-              example: address
-              description: The type of the event (e.g., address, contact, etc.)
             operation:
               type: string
               enum: [CREATE, UPDATE, DELETE]
               description: The CRUD operation type.
-            payload:
-              type: object
-              description: Arbitrary event payload data.
             tenantInfos:
               type: object
               additionalProperties:
                 type: string
               description: Tenant information as key-value pairs.
+            address:
+              type: object
+              description: The address
           required:
-            - type
             - operation
-            - payload
 
 
