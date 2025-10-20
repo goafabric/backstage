@@ -102,55 +102,80 @@ spec:
   type: asyncapi
   lifecycle: production
   owner: devops
-  definition: |  
-    asyncapi: 2.0.0
+  definition: |
+    asyncapi: 3.0.0
     info:
-      title: Person
-      version: '1.0.0'
-      description: |
-        Sends emails upon certain events
-      license:
-        name: Apache 2.0
-        url: https://www.apache.org/licenses/LICENSE-2.0
+      title: Person Event Producer
+      version: 1.0.1
+      description: >
+        AsyncAPI definition for Kafka events published to the `person` topic.
+        Each message represents an `EventData` record emitted when a person-related entity changes.
     
     servers:
-      production:
-        url: mqtt://test.mosquitto.org
-        protocol: mqtt
-        description: Test MQTT broker
+      kafkaBroker:
+        host: kafka:9092
+        protocol: kafka
     
     channels:
-      user/signedup:
-        publish:
-          operationId: onUserSignUp
-          message:
-            $ref : '#/components/messages/UserSignedUp'
+      person:
+        address: person
+        description: >
+          The Kafka topic where person-related events are published.
+        messages:
+          eventDataMessage:
+            $ref: '#/components/messages/EventDataMessage'
+        bindings:
+          kafka:
+            topic: person
+            bindingVersion: '0.4.0'
+    
+    operations:
+      publishPersonEvent:
+        action: send
+        summary: Publish a person-related event.
+        channel:
+          $ref: '#/channels/person'
+        messages:
+          - $ref: '#/channels/person/messages/eventDataMessage'
     
     components:
       messages:
-        UserSignedUp:
-          name: userSignedUp
-          title: User signed up event
-          summary: Inform about a new user registration in the system
+        EventDataMessage:
+          name: EventData
+          title: Person Event
+          summary: Event data about a person or related address.
           contentType: application/json
           payload:
-            $ref: '#/components/schemas/userSignedUpPayload'
+            $ref: '#/components/schemas/EventData'
+          bindings:
+            kafka:
+              key:
+                type: string
+                description: The person ID used as the Kafka message key.
     
       schemas:
-        userSignedUpPayload:
+        EventData:
           type: object
           properties:
-            firstName:
+            type:
               type: string
-              description: "foo"
-            lastName:
+              example: address
+              description: The type of the event (e.g., address, contact, etc.)
+            operation:
               type: string
-              description: "bar"
-            email:
-              type: string
-              format: email
-              description: "baz"
-            createdAt:
-              type: string
-              format: date-time
-              description: "foo"
+              enum: [CREATE, UPDATE, DELETE]
+              description: The CRUD operation type.
+            payload:
+              type: object
+              description: Arbitrary event payload data.
+            tenantInfos:
+              type: object
+              additionalProperties:
+                type: string
+              description: Tenant information as key-value pairs.
+          required:
+            - type
+            - operation
+            - payload
+
+
