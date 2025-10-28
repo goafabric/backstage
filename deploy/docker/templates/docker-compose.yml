@@ -55,16 +55,18 @@ services:
 
       # oauth2proxy provider config
       OAUTH2_PROXY_PROVIDER: "github"
-      OAUTH2_PROXY_CLIENT_ID: "028cf7cd4281313938a0"
+      OAUTH2_PROXY_CLIENT_ID: ${AUTH_GITHUB_CLIENT_ID}
       OAUTH2_PROXY_SCOPE: "user:email"
 
+      OAUTH2_PROXY_COOKIE_SECURE: false
+
       # secrets
-      OAUTH2_PROXY_CLIENT_SECRET: ""
+      OAUTH2_PROXY_CLIENT_SECRET: ${AUTH_GITHUB_CLIENT_SECRET}
       # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
       OAUTH2_PROXY_COOKIE_SECRET: SvJIUgqBKxOYSxJwFREiOg==
 
       # urls
-      OAUTH2_PROXY_REDIRECT_URL: "http://localhost:4180/oauth2/callback"
+      OAUTH2_PROXY_REDIRECT_URL: "https://localhost/oauth2/callback"
 
     networks:
       - ${_Values_root_name}-net
