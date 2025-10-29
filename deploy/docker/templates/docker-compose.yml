@@ -73,7 +73,7 @@ services:
       OAUTH2_PROXY_COOKIE_SECRET: SvJIUgqBKxOYSxJwFREiOg==
 
       # urls
-      OAUTH2_PROXY_REDIRECT_URL: ${_Values_oauth_proxy_redirect_url}
+      #OAUTH2_PROXY_REDIRECT_URL: ${_Values_oauth_proxy_redirect_url}
 
     networks:
       - ${_Values_root_name}-net
