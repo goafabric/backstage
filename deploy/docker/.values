@@ -6,4 +6,4 @@ _Values_service_port=7007
 
 _Values_health_check_disabled=false
 
-#_Values_nginx_oidc="_oidc"
+_Values_nginx_oidc="_oidc"
