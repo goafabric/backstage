@@ -51,7 +51,7 @@ spec:
   profile:
     displayName: Andreas Mautsch
     email: amautsch@gmx.de
-  memberOf: []
+  memberOf: [team-blue]
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -62,4 +62,4 @@ spec:
   profile:
     displayName: John Doe
     email: johndoe@gmx.de
-  memberOf: [ ]
+  memberOf: [devops]
