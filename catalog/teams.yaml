@@ -52,3 +52,14 @@ spec:
     displayName: Andreas Mautsch
     email: amautsch@gmx.de
   memberOf: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: johndoe
+spec:
+  profile:
+    displayName: John Doe
+    email: johndoe@gmx.de
+  memberOf: [ ]
