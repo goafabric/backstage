@@ -7,6 +7,7 @@
       "url": "",
       "timeline": [
         {
+          "date": "2025-03-01",
           "ringId": "adopt",
           "moved": 0
         }
@@ -21,6 +22,7 @@
       "url": "",
       "timeline": [
         {
+          "date": "2025-03-01",
           "ringId": "adopt",
           "moved": 0
         }
@@ -35,249 +37,12 @@
       "url": "",
       "timeline": [
         {
+          "date": "2025-03-01",
           "ringId": "adopt",
           "moved": 0
         }
       ],
       "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "spring-batch",
-      "id": "spring-batch",
-      "title": "Spring Batch",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "spring-boot",
-      "id": "spring-boot",
-      "title": "Spring Boot",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "spring-data",
-      "id": "spring-data",
-      "title": "Spring Data",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "spring-cloud",
-      "id": "spring-cloud",
-      "title": "Spring Cloud",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "hold",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "spring-integration",
-      "id": "spring-integration",
-      "title": "Spring Integration",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "hold",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "openapi",
-      "id": "openapi",
-      "title": "OpenAPI",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "opentelemetry",
-      "id": "opentelemetry",
-      "title": "Opentelemetry",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "quarkus",
-      "id": "quarkus",
-      "title": "Quarkus",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "assess",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "reactjs",
-      "id": "reactjs",
-      "title": "ReactJS",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "langchain4j",
-      "id": "langchain4j",
-      "title": "Langchain4J",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "assess",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "jobrunr",
-      "id": "jobrunr",
-      "title": "JobRunr",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "assess",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "lombok",
-      "id": "lombok",
-      "title": "Lombok",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "hold",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "graphql",
-      "id": "graphql",
-      "title": "GraphQL",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "hold",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "archunit",
-      "id": "archunit",
-      "title": "ArchUnit",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 1
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "arch-decision-records",
-      "id": "arch-decision-records",
-      "title": "Arch Decision Records",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "trial",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "spring-ai",
-      "id": "spring-ai",
-      "title": "Spring AI",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "hold",
-          "moved": 0
-        }
-      ],
-      "quadrant": "languages",
-      "active": true
-    },
-    {
-      "key": "kubernetes",
-      "id": "kubernetes",
-      "title": "Kubernetes",
-      "url": "",
-      "timeline": [
-        {
-          "ringId": "adopt",
-          "moved": 0
-        }
-      ],
-      "quadrant": "platforms",
       "active": true
     }
   ],
