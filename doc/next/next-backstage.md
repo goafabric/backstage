@@ -29,8 +29,14 @@ backend.add(import('"'"'@backstage-community/search-backend-module-adr'"'"'));' 
 
 # tech radar
 https://www.npmjs.com/package/@backstage-community/plugin-tech-radar
+https://github.com/backstage/community-plugins/blob/HEAD/workspaces/tech-radar/plugins/tech-radar-backend/README.md
 
 yarn --cwd packages/app add @backstage-community/plugin-tech-radar
-                    
+yarn --cwd packages/backend add @backstage-community/plugin-tech-radar-backend
+
+grep -Fq "backend.add(import('@backstage-community/plugin-tech-radar-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/plugin-tech-radar-backend'"'"'));' ./packages/backend/src/index.ts
+
+
 # soundcheck
 https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
