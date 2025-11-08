@@ -8,6 +8,9 @@ https://github.com/backstage/backstage/blob/HEAD/docs/features/techdocs/getting-
 
 yarn --cwd packages/app add @backstage/plugin-techdocs
 yarn --cwd packages/app add backstage-plugin-techdocs-addon-mermaid
+              
+# catalog graph
+yarn --cwd packages/app add @backstage/plugin-catalog-graph
 
 # adr
 https://www.npmjs.com/package/@backstage-community/plugin-adr
@@ -21,8 +24,13 @@ backend.add(import('"'"'@backstage-community/plugin-adr-backend'"'"'));' ./packa
 
 grep -Fq "backend.add(import('@backstage-community/search-backend-module-adr'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
 backend.add(import('"'"'@backstage-community/search-backend-module-adr'"'"'));' ./packages/backend/src/index.ts
+               
+####
 
 # tech radar
 https://www.npmjs.com/package/@backstage-community/plugin-tech-radar
 
 yarn --cwd packages/app add @backstage-community/plugin-tech-radar
+                    
+# soundcheck
+https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
