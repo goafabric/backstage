@@ -2,4 +2,14 @@ https://backstage.io/docs/releases/v1.42.0/?utm_campaign=10548882-backstage-comm
 
 #techdocs
 https://github.com/backstage/backstage/blob/HEAD/docs/features/techdocs/getting-started.md
+
 yarn --cwd packages/app add @backstage/plugin-techdocs
+
+#adr
+https://www.npmjs.com/package/@backstage-community/plugin-adr
+
+yarn --cwd packages/app add @backstage-community/plugin-adr
+yarn --cwd packages/backend add @backstage-community/plugin-adr-backend
+
+packages/backend/src/index.ts
+backend.add(import('@backstage-community/plugin-adr-backend'));
