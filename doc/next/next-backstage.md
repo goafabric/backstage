@@ -1,15 +1,28 @@
+# install
 https://backstage.io/docs/releases/v1.42.0/?utm_campaign=10548882-backstage-community&utm_content=345183333&utm_medium=social&utm_source=linkedin&hss_channel=lcp-92965510
 
-#techdocs
+npx @backstage/create-app@latest --next
+
+# techdocs
 https://github.com/backstage/backstage/blob/HEAD/docs/features/techdocs/getting-started.md
 
 yarn --cwd packages/app add @backstage/plugin-techdocs
+yarn --cwd packages/app add backstage-plugin-techdocs-addon-mermaid
 
-#adr
+# adr
 https://www.npmjs.com/package/@backstage-community/plugin-adr
 
 yarn --cwd packages/app add @backstage-community/plugin-adr
 yarn --cwd packages/backend add @backstage-community/plugin-adr-backend
+yarn --cwd packages/backend add @backstage-community/search-backend-module-adr
 
-packages/backend/src/index.ts
-backend.add(import('@backstage-community/plugin-adr-backend'));
+grep -Fq "backend.add(import('@backstage-community/plugin-adr-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/plugin-adr-backend'"'"'));' ./packages/backend/src/index.ts
+
+grep -Fq "backend.add(import('@backstage-community/search-backend-module-adr'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/search-backend-module-adr'"'"'));' ./packages/backend/src/index.ts
+
+# tech radar
+https://www.npmjs.com/package/@backstage-community/plugin-tech-radar
+
+yarn --cwd packages/app add @backstage-community/plugin-tech-radar
