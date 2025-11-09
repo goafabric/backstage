@@ -15,7 +15,35 @@ app:
     # Configure the catalog index page to be the root page, this is normally mounted on /catalog
     - page:catalog:
         config:
-          path: /
+          path: /catalog
+
+    # entity tabs
+    - entity-content:catalog/overview
+    - entity-content:api-docs/apis
+    - entity-content:techdocs
+
+    # entity overview
+    - entity-card:catalog/about:
+        disabled: false
+        config:
+          height: 100
+    - entity-card:catalog/links:
+        disabled: false
+    - entity-card:catalog-graph/relations:
+        config:
+          height: 300
+
+    - entity-card:catalog/depends-on-components:
+        disabled: true
+    - entity-card:catalog/depends-on-resources:
+        disabled: true
+    - entity-card:catalog/has-subcomponents:
+        disabled: true
+    - entity-card:api-docs/provided-apis:
+        disabled: true
+    - entity-card:api-docs/consumed-apis:
+        disabled: true
+
 
 
 organization:
@@ -108,3 +136,6 @@ kubernetes:
 permission:
   # setting this to `false` will disable permissions
   enabled: true
+
+techRadar:
+  url: "dd"

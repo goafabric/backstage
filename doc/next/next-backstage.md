@@ -3,12 +3,14 @@ https://backstage.io/docs/releases/v1.42.0/?utm_campaign=10548882-backstage-comm
 
 npx @backstage/create-app@latest --next
 
-# techdocs
+# techdocs + apidocs
 https://github.com/backstage/backstage/blob/HEAD/docs/features/techdocs/getting-started.md
 
 yarn --cwd packages/app add @backstage/plugin-techdocs
 yarn --cwd packages/app add backstage-plugin-techdocs-addon-mermaid
-              
+
+yarn --cwd packages/app add @backstage/plugin-api-docs
+
 # catalog graph
 yarn --cwd packages/app add @backstage/plugin-catalog-graph
 
