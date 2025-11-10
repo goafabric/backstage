@@ -76,15 +76,7 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location, User, Group]
   locations:
-    - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/entities-git.yaml
-
-    - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/teams.yaml
-
-    - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/resources.yaml
-
+    $include: ./app-config-catalogs.yaml
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
