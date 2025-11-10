@@ -21,6 +21,7 @@ services:
       #application
       TZ: Europe/Berlin
       ARGOCD_AUTH_TOKEN: ${ARGOCD_AUTH_TOKEN}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   nginx:
     container_name: ${_Values_root_name}-nginx
