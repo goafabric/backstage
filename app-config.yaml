@@ -113,7 +113,7 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location, User, Group]
   locations:
-    $include: ./catalog-locations.yaml
+    $include: ./app-config-catalogs.yaml
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
