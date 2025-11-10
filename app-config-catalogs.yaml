@@ -1,0 +1,8 @@
+- type: url
+  target: https://github.com/goafabric/backstage/blob/develop/catalog/entities-git.yaml
+
+- type: url
+  target: https://github.com/goafabric/backstage/blob/develop/catalog/teams.yaml
+
+- type: url
+  target: https://github.com/goafabric/backstage/blob/develop/catalog/resources.yaml
