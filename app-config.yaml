@@ -1,6 +1,49 @@
 app:
-  title: Scaffolded Backstage App
+  title: Backstage
   baseUrl: http://localhost:3000
+
+  # Enable all packages by default, this will discover packages from packages/app/package.json
+  packages: all
+
+  extensions:
+    # Disable the nav items that we're manually rendering in packages/app/src/modules/nav/Sidebar.tsx
+    - nav-item:search: false
+    - nav-item:user-settings: false
+    - nav-item:catalog: false
+    - nav-item:scaffolder: false
+
+    # Configure the catalog index page to be the root page, this is normally mounted on /catalog
+    - page:catalog:
+        config:
+          path: /catalog
+
+    # entity tabs
+    - entity-content:catalog/overview
+    - entity-content:api-docs/apis
+    - entity-content:techdocs
+
+    # entity overview
+    - entity-card:catalog/about:
+        disabled: false
+        config:
+          height: 100
+    - entity-card:catalog/links:
+        disabled: false
+    - entity-card:catalog-graph/relations:
+        config:
+          height: 300
+
+    - entity-card:catalog/depends-on-components:
+        disabled: true
+    - entity-card:catalog/depends-on-resources:
+        disabled: true
+    - entity-card:catalog/has-subcomponents:
+        disabled: true
+    - entity-card:api-docs/provided-apis:
+        disabled: true
+    - entity-card:api-docs/consumed-apis:
+        disabled: true
+
 
 organization:
   name: My Company
@@ -66,7 +109,7 @@ auth:
 #        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
 scaffolder:
-  # see https://backstage.io/docs/features/software-templates/configuration for software template options
+# see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
   processingInterval: { minutes: 5 }
@@ -76,41 +119,14 @@ catalog:
   rules:
     - allow: [Component, System, API, Resource, Location, User, Group]
   locations:
-    - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/entities-git.yaml
+    $include: ./catalog-locations.yaml
 
-    - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/teams.yaml
+kubernetes:
+  # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
 
-    - type: url
-      target: https://github.com/goafabric/backstage/blob/develop/catalog/resources.yaml
-
-
-# see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
   # setting this to `false` will disable permissions
   enabled: true
 
-proxy:
-  endpoints:
-    '/argocd/api':
-      # url to the api of your hosted argoCD instance
-      target: https://v2202402203466256255.megasrv.de/argocd/api/v1/
-      changeOrigin: true
-      # this line is required if your hosted argoCD instance has self-signed certificate
-      secure: false
-      headers:
-        Cookie:
-          $env: ARGOCD_AUTH_TOKEN
-
-argocd:
-  baseUrl: https://v2202402203466256255.megasrv.de/argocd
-
-search:
-  collators:
-    techdocs:
-      schedule: # same options as in SchedulerServiceTaskScheduleDefinition
-        # supports cron, ISO duration, "human duration" as used in code
-        initialDelay: { seconds: 20 }
-        frequency: { hours: 1 }
-        timeout: { minutes: 3 }
+techRadar:
+  url: "https://github.com/goafabric/example-konstruction-kit/blob/develop/helm/infra/techradar/data/config-backstage.json"
