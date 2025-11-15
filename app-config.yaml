@@ -32,6 +32,7 @@ app:
     - entity-card:catalog-graph/relations:
         config:
           height: 300
+          type: content
 
     - entity-card:catalog/depends-on-components:
         disabled: true
