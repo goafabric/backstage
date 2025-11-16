@@ -6,48 +6,7 @@ app:
   packages: all
 
   extensions:
-    # Disable the nav items that we're manually rendering in packages/app/src/modules/nav/Sidebar.tsx
-    - nav-item:search: false
-    - nav-item:user-settings: false
-    - nav-item:catalog: false
-    - nav-item:scaffolder: false
-
-    # Configure the catalog index page to be the root page, this is normally mounted on /catalog
-    - page:catalog:
-        config:
-          path: /catalog
-
-    # entity tabs
-    - entity-content:catalog/overview
-    - entity-content:api-docs/apis
-    - entity-content:techdocs
-
-    # entity overview
-    - entity-card:catalog/about:
-        disabled: false
-        config:
-          height: 100
-          type: content
-    - entity-card:catalog-graph/relations:
-        disabled: false
-        config:
-          type: info
-    - entity-card:catalog/links:
-        disabled: false
-        config:
-          type: info
-
-    - entity-card:catalog/depends-on-components:
-        disabled: true
-    - entity-card:catalog/depends-on-resources:
-        disabled: true
-    - entity-card:catalog/has-subcomponents:
-        disabled: true
-    - entity-card:api-docs/provided-apis:
-        disabled: true
-    - entity-card:api-docs/consumed-apis:
-        disabled: true
-
+    $include: ./app-config-layout.yaml
 
 organization:
   name: My Company
@@ -82,7 +41,6 @@ backend:
   database:
     client: better-sqlite3
     connection: ':memory:'
-
 
 integrations:
   github:
