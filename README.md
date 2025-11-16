@@ -70,6 +70,8 @@ yarn --cwd packages/backend add @backstage-community/plugin-tech-radar-backend
 grep -Fq "backend.add(import('@backstage-community/plugin-tech-radar-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
 backend.add(import('"'"'@backstage-community/plugin-tech-radar-backend'"'"'));' ./packages/backend/src/index.ts
 
+        
+######
 
 # soundcheck
 https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
@@ -77,3 +79,7 @@ https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
 
 ## gitlab
 https://github.com/immobiliare/backstage-plugin-gitlab
+
+# kiali
+yarn workspace app add @backstage-community/plugin-kiali
+yarn workspace backend add @backstage-community/plugin-kiali-backend1
