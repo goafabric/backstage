@@ -28,14 +28,14 @@ app:
         config:
           height: 100
           type: content
+    - entity-card:catalog-graph/relations:
+        disabled: false
+        config:
+          type: info
     - entity-card:catalog/links:
         disabled: false
         config:
           type: info
-    - entity-card:catalog-graph/relations:
-        disabled: false
-        config:
-          type: content
 
     - entity-card:catalog/depends-on-components:
         disabled: true
