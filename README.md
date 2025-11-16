@@ -81,5 +81,7 @@ https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
 https://github.com/immobiliare/backstage-plugin-gitlab
 
 # kiali
+https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugins/kiali
+
 yarn workspace app add @backstage-community/plugin-kiali
 yarn workspace backend add @backstage-community/plugin-kiali-backend1
