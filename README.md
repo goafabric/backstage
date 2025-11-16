@@ -1,12 +1,13 @@
-# update
-yarn backstage-cli versions:bump
-
 # Backstage Demo App
 Mono Repo like approach where configuration sits under /catalog
 Chaged Docker Image to work with Guest Login
 
+# update
+yarn backstage-cli versions:bump
+
 # create
-time npx @backstage/create-app@latest
+time npx @backstage/create-app@latest --next
+
 
 # Docker image
 docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.4-SNAPSHOT
@@ -21,64 +22,66 @@ yarn start
 - also needs mktechdocs-core added
 
 # important files in general
-- packages/app/src/Root/Root.tsx
-- packages/app/src/components/catalog/EntityPage.tsx
+
 - packages/app/src/App.tsx
+- packages/app/src/nav/Sidebar.tsx
 - packages/backend/src/index.ts
 
 # config + catalog
 /catalog
 app-config.yaml
+app-config-catalogs.yaml
 app-config-production.yaml
-                      
+
 
 # plugins
 
-## argcod
-https://roadie.io/backstage/plugins/argo-cd/
+# techdocs + apidocs
+https://github.com/backstage/backstage/blob/HEAD/docs/features/techdocs/getting-started.md
 
-yarn workspace app add @roadiehq/backstage-plugin-argo-cd
-- EntityPage.tsx
+yarn --cwd packages/app add @backstage/plugin-techdocs
+yarn --cwd packages/app add backstage-plugin-techdocs-addon-mermaid
 
- 
-## adr
-https://github.com/backstage/community-plugins/blob/HEAD/workspaces/adr/plugins/adr-backend/README.md
-https://github.com/backstage/community-plugins/blob/da5dc0e46ad6819e12c1ea015c7a44fb643ba6cb/workspaces/adr/plugins/search-backend-module-adr/README.md
+yarn --cwd packages/app add @backstage/plugin-api-docs
+
+# catalog graph
+yarn --cwd packages/app add @backstage/plugin-catalog-graph
+
+# adr
 https://www.npmjs.com/package/@backstage-community/plugin-adr
 
-yarn --cwd packages/backend add @backstage-community/plugin-adr-backend
-- packages/backend/src/index.ts
-
-yarn --cwd packages/backend add @backstage-community/search-backend-module-adr
-- packages/backend/src/index.ts
-
 yarn --cwd packages/app add @backstage-community/plugin-adr
-- EntityPage.tsx
+yarn --cwd packages/backend add @backstage-community/plugin-adr-backend
+yarn --cwd packages/backend add @backstage-community/search-backend-module-adr
 
+grep -Fq "backend.add(import('@backstage-community/plugin-adr-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/plugin-adr-backend'"'"'));' ./packages/backend/src/index.ts
 
-## my tech radar
-/packages/app/src/components/custom/
-/packages/app/public/custom
+grep -Fq "backend.add(import('@backstage-community/search-backend-module-adr'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/search-backend-module-adr'"'"'));' ./packages/backend/src/index.ts
 
-/packages/app/src/components/Root/Root.tsx
-/packages/app/src/App.tsx
-                         
+# tech radar
+https://www.npmjs.com/package/@backstage-community/plugin-tech-radar
+https://github.com/backstage/community-plugins/blob/HEAD/workspaces/tech-radar/plugins/tech-radar-backend/README.md
 
-# div plugins
+yarn --cwd packages/app add @backstage-community/plugin-tech-radar
+yarn --cwd packages/backend add @backstage-community/plugin-tech-radar-backend
 
-## scaffolder plugins
-https://github.com/RoadieHQ/roadie-backstage-plugins/blob/main/plugins/scaffolder-actions/scaffolder-backend-module-utils/README.md
-yarn --cwd packages/backend @roadiehq/scaffolder-backend-module-utils
+grep -Fq "backend.add(import('@backstage-community/plugin-tech-radar-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/plugin-tech-radar-backend'"'"'));' ./packages/backend/src/index.ts
 
-## github actions
-https://github.com/backstage/community-plugins/tree/main/workspaces/github-actions/plugins/github-actions
+        
+######
 
-yarn --cwd packages/app remove @backstage/plugin-github-actions
-yarn --cwd packages/backend remove @backstage/plugin-auth-backend-module-github-provider
+# soundcheck
+https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
 
-/packages/src/components/catalog/EntityPage.tsx
-/packages/backend/src/index.ts
-backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
 
 ## gitlab
 https://github.com/immobiliare/backstage-plugin-gitlab
+
+# kiali
+https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugins/kiali
+
+yarn workspace app add @backstage-community/plugin-kiali
+yarn workspace backend add @backstage-community/plugin-kiali-backend1

@@ -6,6 +6,12 @@ services:
     ports:
       - "${_Values_service_port}:${_Values_service_port}"
 
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://localhost:7007/health').then(r => { if (!r.ok) process.exit(1) }).catch(() => process.exit(1))\""]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
     volumes:
       - tmp:/tmp
       - applogs:/usr/share/logs
@@ -15,13 +21,18 @@ services:
       #application
       TZ: Europe/Berlin
       ARGOCD_AUTH_TOKEN: ${ARGOCD_AUTH_TOKEN}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      APP_CONFIG_app_baseUrl: https://localhost/backstage
+      APP_CONFIG_backend_baseUrl: https://localhost/backstage
 
   nginx:
     container_name: ${_Values_root_name}-nginx
     image: nginx:1.28-alpine3.21
     restart: 'no'
+
     ports:
       - "8080:80"
+      - "443:443"
     networks:
       - ${_Values_root_name}-net
     volumes:
@@ -31,6 +42,44 @@ services:
       application:
         condition: service_started
 
+  oauth2-proxy:
+    container_name: ${_Values_root_name}-oauthproxy
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.4.0
+    command:
+      - --email-domain=*
+    #      - --scope "user:email"
+    restart: 'no'
+    ports:
+      - "4180:4180"
+    environment:
+      #application
+      TZ: Europe/Berlin
+
+      # oauth2proxy generic config
+      OAUTH2_PROXY_UPSTREAM: "file:///dev/null"
+      OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180"
+      OAUTH2_PROXY_REVERSE_PROXY: "true"
+      OAUTH2_PROXY_SET_XAUTHREQUEST: "true"
+
+      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
+
+      # oauth2proxy provider config
+      OAUTH2_PROXY_PROVIDER: "github"
+      OAUTH2_PROXY_CLIENT_ID: ${AUTH_DOCKER_GITHUB_CLIENT_ID}
+      OAUTH2_PROXY_SCOPE: "user:email"
+
+      #OAUTH2_PROXY_COOKIE_SECURE: false
+
+      # secrets
+      OAUTH2_PROXY_CLIENT_SECRET: ${AUTH_DOCKER_GITHUB_CLIENT_SECRET}
+      # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
+      OAUTH2_PROXY_COOKIE_SECRET: SvJIUgqBKxOYSxJwFREiOg==
+
+      # urls
+      #OAUTH2_PROXY_REDIRECT_URL: ${_Values_oauth_proxy_redirect_url}
+
+    networks:
+      - ${_Values_root_name}-net
 volumes:
     tmp:
     applogs:

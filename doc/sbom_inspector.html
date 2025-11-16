@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SBOM Inspector (client-side)</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:18px}
+    h1{font-size:20px}
+    input[type=file]{margin-bottom:12px}
+    table{border-collapse:collapse;width:100%;margin-top:12px}
+    th,td{border:1px solid #ddd;padding:8px;text-align:left}
+    th{background:#f4f4f4}
+    tr:hover{background:#fafafa}
+    .mono{font-family:monospace;font-size:0.95em}
+    .small{font-size:0.9em;color:#444}
+    .btn{display:inline-block;padding:8px 12px;border-radius:6px;background:#0366d6;color:white;text-decoration:none;cursor:pointer;margin-right:8px}
+    .btn.secondary{background:#666}
+    details{margin-top:6px}
+    #log{white-space:pre-wrap;background:#111;color:#eee;padding:8px;border-radius:6px;height:120px;overflow:auto;margin-top:12px}
+  </style>
+</head>
+<body>
+  <h1>SBOM Inspector — components, licenses & CVE lookup</h1>
+  <p class="small">Drop or select an SBOM (CycloneDX JSON/XML, SPDX JSON). The file is parsed locally in your browser. Optionally query OSV for CVEs (public API). Some lookups may fail due to CORS or lack of data.</p>
+
+  <input id="file" type="file" accept=".json,.xml,.spdx,text/*" />
+  <button id="clear" class="btn secondary">Clear</button>
+  <button id="lookupAll" class="btn">Lookup CVEs (OSV)</button>
+  <div id="summary" class="small"></div>
+
+  <div id="tableWrap"></div>
+  <div id="log" aria-live="polite"></div>
+
+<script>
+async function readFile(file){
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result);
+    r.onerror=()=>rej(r.error);
+    r.readAsText(file);
+  });
+}
+
+function tryParseJSONorXML(text){
+  // try JSON first
+  try{return {type:'json',data:JSON.parse(text)};}catch(e){}
+  // try XML
+  try{
+    const parser=new DOMParser();
+    const doc=parser.parseFromString(text,'application/xml');
+    const pe=doc.getElementsByTagName('parsererror');
+    if(pe.length) throw new Error('XML parse error');
+    return {type:'xml',data:doc};
+  }catch(e){}
+  return null;
+}
+
+function extractFromCycloneDX(json){
+  const comps = (json.components || []);
+  return comps.map(c => ({
+    name: c.name || c.group || c.publisher || c.purl || '',
+    version: c.version || '',   // <-- COMMA only
+    purl: c.purl || '',         // <-- next property starts here
+    hashes: (c.hashes || []).map(h => h.alg + ':' + h.content).join(', '),
+    licenses: (c.licenses || []).flatMap(l => {
+      if (l.license) {
+        return [l.license.id || l.license.name || l.license.spdxExpression || l.license.text || 'unknown'];
+      }
+      return [l.name || l.id || 'unknown'];
+    }),
+    vulnerabilities: c.vulnerabilities || []
+  }));
+}
+
+
+
+function extractFromCycloneDXXml(doc){
+  const comps=[];
+  const nodes=doc.getElementsByTagName('component');
+  for(const n of nodes){
+    const name=n.getAttribute('name')|| (n.getElementsByTagName('name')[0] && n.getElementsByTagName('name')[0].textContent) || '';
+    const version=n.getAttribute('version')|| (n.getElementsByTagName('version')[0] && n.getElementsByTagName('version')[0].textContent) || '';
+    const purl=(n.getElementsByTagName('purl')[0] && n.getElementsByTagName('purl')[0].textContent) || '';
+    const licenses=[];
+    const lnodes=n.getElementsByTagName('license');
+    for(const ln of lnodes){
+      const idEl=ln.getElementsByTagName('id')[0];
+      const nameEl=ln.getElementsByTagName('name')[0];
+      if(idEl) licenses.push(idEl.textContent);
+      else if(nameEl) licenses.push(nameEl.textContent);
+    }
+    comps.push({name,version,purl,hashes:'',licenses,vulnerabilities:[]});
+  }
+  return comps;
+}
+
+function extractFromSPDX(json){
+  // SPDX JSON uses packages[]
+  const pkgs=(json.packages||json.package || []);
+  return pkgs.map(p=>({
+    name:p.name||p.SPDXID||'',
+    version:p.versionInfo||p.version||'',
+    purl:p.externalRefs && p.externalRefs.find(r=>r.referenceType==='purl' || r.referenceType==='PACKAGE-MANAGER') ? (p.externalRefs.find(r=>r.referenceType==='purl')||{}).referenceLocator : '',
+    hashes: (p.checksum||[]).map(h=>h.algorithm+':'+h.checksumValue).join(', '),
+    licenses: [p.licenseConcluded||p.licenseInfoFromFiles||""].flat().filter(Boolean),
+    vulnerabilities:[]
+  }));
+}
+
+function extractFromSPDXText(text){
+  // fallback: parse minimal SPDX tag-value to get PackageName and PackageVersion
+  const lines = text.split(/\r?\n/);
+  const pkgs=[]; let cur=null;
+  for(const l of lines){
+    const m=l.match(/^PackageName:\s*(.*)$/);
+    if(m){ if(cur) pkgs.push(cur); cur={name:m[1],version:'',purl:'',licenses:[],hashes:'',vulnerabilities:[]}; continue; }
+    const mv=l.match(/^PackageVersion:\s*(.*)$/);
+    if(mv && cur) cur.version=mv[1];
+    const ml=l.match(/^PackageLicenseConcluded:\s*(.*)$/);
+    if(ml && cur) cur.licenses.push(ml[1]);
+  }
+  if(cur) pkgs.push(cur);
+  return pkgs;
+}
+
+function unifyComponents(parsed){
+  if(parsed.type==='json'){
+    const j=parsed.data;
+    const bf = (j.bomFormat || "").toLowerCase();
+    if(bf.includes("cyclonedx") || j.components) {
+      return extractFromCycloneDX(j);
+    }
+    if(j.spdxVersion || j.SPDXID || j.packages) return extractFromSPDX(j);
+    return [];
+  } else if(parsed.type==='xml'){
+    const doc=parsed.data;
+    const rootName=doc.documentElement.nodeName.toLowerCase();
+    if(rootName.includes("bom") || rootName.includes("cyclonedx")) return extractFromCycloneDXXml(doc);
+    return [];
+  }
+  return [];
+}
+
+function renderTable(comps){
+  const wrap=document.getElementById('tableWrap');
+  if(!comps.length){ wrap.innerHTML='<p class="small">No components found / unsupported SBOM format.</p>'; return; }
+  let html='<table><thead><tr><th>#</th><th>Name</th><th>Version</th><th>PURL / ID</th><th>Licenses</th><th>Vulnerabilities</th><th>Actions</th></tr></thead><tbody>';
+  comps.forEach((c,i)=>{
+    const lic=(c.licenses && c.licenses.length)? c.licenses.join(', ') : '<span class="small">(none)</span>';
+    const vulnCount=(c.vulnerabilities && c.vulnerabilities.length)? c.vulnerabilities.length : 0;
+    html+=`<tr data-index="${i}"><td>${i+1}</td><td class="mono">${escapeHtml(c.name)}</td><td>${escapeHtml(c.version)}</td><td class="mono">${escapeHtml(c.purl||c.hashes||'')}</td><td>${escapeHtml(lic)}</td><td id="vcount-${i}">${vulnCount}</td><td><button class="btn" data-action="show" data-index="${i}">Show</button> <button class="btn secondary" data-action="lookup" data-index="${i}">Lookup</button></td></tr>`;
+  });
+  html+='</tbody></table>';
+  // details area for expanded component info
+  html+='<div id="details"></div>';
+  wrap.innerHTML=html;
+}
+
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function attachHandlers(state){
+  document.querySelectorAll('button[data-action="show"]').forEach(btn=>btn.addEventListener('click',e=>{
+    const i=+e.currentTarget.dataset.index; showDetails(state.components[i],i);
+  }));
+  document.querySelectorAll('button[data-action="lookup"]').forEach(btn=>btn.addEventListener('click',async e=>{
+    const i=+e.currentTarget.dataset.index; await lookupCVEsForComponent(state,i); 
+  }));
+}
+
+function showDetails(c,i){
+  const d=document.getElementById('details');
+  let html=`<h3>Component details — ${escapeHtml(c.name)} ${escapeHtml(c.version||'')}</h3>`;
+  html+=`<p class="mono">PURL/ID: ${escapeHtml(c.purl||c.hashes||'')}</p>`;
+  html+=`<p>Licenses: ${(c.licenses && c.licenses.length)? escapeHtml(c.licenses.join(', ')) : '<span class="small">(none)</span>'}</p>`;
+  if(c.vulnerabilities && c.vulnerabilities.length){
+    html+='<h4>Vulnerabilities</h4>';
+    c.vulnerabilities.forEach(v=>{
+      html+=`<details><summary>${escapeHtml(v.id||v.aliases && v.aliases.join(', ')||'unknown')} — ${escapeHtml(v.summary||v.summary||'')}</summary>`;
+      html+=`<div class="small">${escapeHtml(JSON.stringify(v,null,2))}</div></details>`;
+    });
+  } else {
+    html+='<p class="small">No vulnerabilities recorded for this component.</p>';
+  }
+  d.innerHTML=html;
+}
+
+async function lookupCVEsForComponent(state,index){
+  const comp=state.components[index];
+  log(`Lookup CVEs for ${comp.name} ${comp.version} ...`);
+  // if purl available, parse it
+  let pkg=null;
+  if(comp.purl){ pkg=parsePurl(comp.purl); }
+  else {
+    // try to guess from name
+    pkg={type:null,name:comp.name,version:comp.version};
+  }
+  const ecosystem=mapPurlTypeToEcosystem(pkg && pkg.type);
+  if(!ecosystem){ log('Could not determine ecosystem for package; OSV query may fail.'); }
+  // build OSV request body
+  const body={package:{name:pkg.name,ecosystem:ecosystem||null},version:comp.version};
+  try{
+    const resp=await fetch('https://api.osv.dev/v1/query',{
+      method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)
+    });
+    if(!resp.ok){
+      const txt=await resp.text(); log('OSV responded with HTTP '+resp.status+': '+txt); return; }
+    const data=await resp.json();
+    if(data.vulns && data.vulns.length){
+      comp.vulnerabilities=data.vulns; document.getElementById('vcount-'+index).textContent=data.vulns.length; log(`Found ${data.vulns.length} vuln(s) via OSV for ${comp.name}`);
+    } else {
+      log('No vulns found in OSV for this package/version.');
+    }
+  }catch(err){ log('Lookup error: '+err.message); }
+}
+
+async function lookupAllCVEs(state){
+  for(let i=0;i<state.components.length;i++){
+    await lookupCVEsForComponent(state,i);
+  }
+  // refresh details handlers
+  renderTable(state.components); attachHandlers(state);
+}
+
+function parsePurl(purl){
+  // very small purl parser: pkg:type/namespace/name@version?qual#sub
+  // We'll extract type, name and version if present
+  try{
+    if(!purl.startsWith('pkg:')) return {type:null,name:purl,version:null};
+    const without=purl.slice(4);
+    // split off @version
+    const atIdx=without.lastIndexOf('@');
+    let ver=null; let rest=without;
+    if(atIdx>-1){ ver=without.slice(atIdx+1); rest=without.slice(0,atIdx); }
+    // rest is type/namespace/name or type/name
+    const slash=rest.indexOf('/');
+    const type=rest.slice(0,slash);
+    const name=rest.slice(slash+1);
+    // keep name as-is (may include namespace)
+    return {type, name, version:ver};
+  }catch(e){ return {type:null,name:purl,version:null}; }
+}
+
+function mapPurlTypeToEcosystem(type){
+  if(!type) return null;
+  const t=type.toLowerCase();
+  // OSV ecosystems: "PyPI", "npm", "Maven", "Go", ... (case-insensitive)
+  const map={npm:'npm',pypi:'PyPI',maven:'Maven',golang:'Go',golangmodule:'Go','golang-module':'Go',gem:'RubyGems',rubygems:'RubyGems',composer:'Packagist',deb:'Debian',rpm:'RPM',cargo:'crates',nuget:'NuGet'};
+
+  return map[t]||null;
+}
+
+function log(s){ const l=document.getElementById('log'); l.textContent = new Date().toISOString() + ' | ' + s + '\n' + l.textContent; }
+
+// wire up file input
+const fileInput=document.getElementById('file');
+const clearBtn=document.getElementById('clear');
+const lookupAllBtn=document.getElementById('lookupAll');
+let state={components:[]};
+
+fileInput.addEventListener('change', async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  log('Reading file: '+f.name+' ('+f.size+' bytes)');
+  const txt=await readFile(f);
+  const parsed=tryParseJSONorXML(txt);
+  if(!parsed){
+    // try SPDX tag-value
+    const t=txt.substring(0,2000);
+    const pkgs=extractFromSPDXText(txt);
+    state.components=pkgs;
+    renderTable(state.components); attachHandlers(state);
+    document.getElementById('summary').textContent = `Parsed ${state.components.length} package(s) from SPDX tag-value or unknown format.`;
+    return;
+  }
+  const comps=unifyComponents(parsed);
+  state.components=comps;
+  renderTable(state.components); attachHandlers(state);
+  document.getElementById('summary').textContent = `Parsed ${state.components.length} component(s).`;
+});
+
+clearBtn.addEventListener('click', ()=>{ document.getElementById('tableWrap').innerHTML=''; document.getElementById('summary').textContent=''; document.getElementById('log').textContent=''; fileInput.value=''; state={components:[]}; });
+
+lookupAllBtn.addEventListener('click', async ()=>{
+  if(!state.components || !state.components.length){ alert('No components loaded.'); return; }
+  lookupAllBtn.disabled=true; lookupAllBtn.textContent='Looking up...';
+  await lookupAllCVEs(state);
+  lookupAllBtn.disabled=false; lookupAllBtn.textContent='Lookup CVEs (OSV)';
+});
+
+</script>
+</body>
+</html>
