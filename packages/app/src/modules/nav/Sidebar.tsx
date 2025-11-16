@@ -9,7 +9,7 @@ import { compatWrapper } from '@backstage/core-compat-api';
 import { Sidebar } from '@backstage/core-components';
 import { NavContentBlueprint } from '@backstage/frontend-plugin-api';
 import { SidebarLogo } from './SidebarLogo';
-import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
+// import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
