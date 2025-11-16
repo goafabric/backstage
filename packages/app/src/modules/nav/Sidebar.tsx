@@ -29,11 +29,13 @@ export const SidebarContent = NavContentBlueprint.make({
           <SidebarGroup label="Menu" icon={<MenuIcon />}>
             {/* Global nav, not org-specific */}
             <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
+            {/*
             <SidebarItem
               icon={CreateComponentIcon}
               to="create"
               text="Create..."
             />
+            */}
             {/* End global nav */}
             <SidebarDivider />
             <SidebarScrollWrapper>
@@ -42,6 +44,12 @@ export const SidebarContent = NavContentBlueprint.make({
                 <SidebarItem {...item} key={index} />
               ))}
             </SidebarScrollWrapper>
+
+            {/* Custom Sidebar */}
+            <SidebarDivider />
+            <SidebarItem icon={MenuIcon} to="docs/default/component/guidelines" text="Guidelines" />
+            <SidebarItem icon={MenuIcon} to="catalog-graph?rootEntityRefs%5B%5D=component%3Adefault%2Fapi-gateway&maxDepth=%E2%88%9E&selectedKinds%5B%5D=component&unidirectional=false&mergeRelations=true&direction=LR&showFilters=true&curve=curveMonotoneX" text="Dependencies"/>
+
           </SidebarGroup>
           <SidebarSpace />
           <SidebarDivider />
