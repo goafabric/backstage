@@ -88,4 +88,4 @@ backend.add(import('"'"'@immobiliarelabs/backstage-plugin-gitlab-backend'"'"'));
 https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugins/kiali
 
 yarn workspace app add @backstage-community/plugin-kiali
-yarn workspace backend add @backstage-community/plugin-kiali-backend1
+yarn workspace backend add @backstage-community/plugin-kiali-backend
