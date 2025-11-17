@@ -72,13 +72,17 @@ backend.add(import('"'"'@backstage-community/plugin-tech-radar-backend'"'"'));' 
 
         
 ######
+## gitlab + postgres
+yarn --cwd packages/backend add pg
 
-# soundcheck
-https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
+yarn --cwd packages/backend add @backstage/plugin-catalog-backend-module-gitlab
 
+yarn --cwd packages/app add @immobiliarelabs/backstage-plugin-gitlab
+yarn --cwd packages/backend add @immobiliarelabs/backstage-plugin-gitlab-backend
 
-## gitlab
-https://github.com/immobiliare/backstage-plugin-gitlab
+grep -Fq "backend.add(import('@immobiliarelabs/backstage-plugin-gitlab-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@immobiliarelabs/backstage-plugin-gitlab-backend'"'"'));' ./packages/backend/src/index.ts
+
 
 # kiali
 https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugins/kiali
