@@ -14,7 +14,7 @@
     "lint": "backstage-cli package lint"
   },
   "dependencies": {
-    "@backstage-community/plugin-adr": "^0.17.2",
+    "@backstage-community/plugin-adr": "^0.18.1",
     "@backstage-community/plugin-tech-radar": "^1.12.0",
     "@backstage/cli": "^0.35.0",
     "@backstage/core-compat-api": "^0.5.5",
