@@ -10,7 +10,7 @@ time npx @backstage/create-app@latest --next
 
 
 # Docker image
-docker run --pull always --rm -it -p 7007:7007 goafabric/backstage:1.2.1-SNAPSHOT
+docker run --pull always --rm -it -p 7007:7007 goafabric/backstage:1.2.3-SNAPSHOT
 
 # Local run
 yarn install
