@@ -10,7 +10,7 @@ time npx @backstage/create-app@latest --next
 
 
 # Docker image
-docker run --rm -it -p 7007:7007 goafabric/backstage:1.0.4-SNAPSHOT
+docker run --pull always --rm -it -p 7007:7007 goafabric/backstage:1.2.1-SNAPSHOT
 
 # Local run
 yarn install
@@ -72,16 +72,20 @@ backend.add(import('"'"'@backstage-community/plugin-tech-radar-backend'"'"'));' 
 
         
 ######
+## gitlab + postgres
+yarn --cwd packages/backend add pg
 
-# soundcheck
-https://backstage.spotify.com/docs/plugins/soundcheck/setup-and-installation
+yarn --cwd packages/backend add @backstage/plugin-catalog-backend-module-gitlab
 
+yarn --cwd packages/app add @immobiliarelabs/backstage-plugin-gitlab
+yarn --cwd packages/backend add @immobiliarelabs/backstage-plugin-gitlab-backend
 
-## gitlab
-https://github.com/immobiliare/backstage-plugin-gitlab
+grep -Fq "backend.add(import('@immobiliarelabs/backstage-plugin-gitlab-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@immobiliarelabs/backstage-plugin-gitlab-backend'"'"'));' ./packages/backend/src/index.ts
+
 
 # kiali
 https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugins/kiali
 
 yarn workspace app add @backstage-community/plugin-kiali
-yarn workspace backend add @backstage-community/plugin-kiali-backend1
+yarn workspace backend add @backstage-community/plugin-kiali-backend
