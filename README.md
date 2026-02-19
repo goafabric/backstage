@@ -89,15 +89,3 @@ https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugin
 
 yarn workspace app add @backstage-community/plugin-kiali
 yarn workspace backend add @backstage-community/plugin-kiali-backend
-
-# upgrade to 1.46+
-
-yarn add -D \
-jest@^30 \
-@types/jest \
-@jest/environment-jsdom-abstract@^30 \
-jsdom@^27
-
-yarn --cwd packages/app add @backstage-community/plugin-adr
-yarn --cwd packages/backend add @backstage-community/plugin-adr-backend
-yarn --cwd packages/backend add @backstage-community/search-backend-module-adr
