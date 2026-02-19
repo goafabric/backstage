@@ -65,6 +65,5 @@ backend.add(import('@backstage/plugin-signals-backend'));
 
 backend.add(import('@backstage-community/plugin-adr-backend'));
 backend.add(import('@backstage-community/search-backend-module-adr'));
-
 backend.add(import('@backstage-community/plugin-tech-radar-backend'));
 backend.start();
