@@ -89,3 +89,12 @@ https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugin
 
 yarn workspace app add @backstage-community/plugin-kiali
 yarn workspace backend add @backstage-community/plugin-kiali-backend
+                               
+# announcements
+https://roadie.io/backstage/plugins/announcements/
+
+yarn --cwd packages/app add @backstage-community/plugin-announcements
+
+grep -Fq "backend.add(import('@backstage-community/plugin-announcements-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
+backend.add(import('"'"'@backstage-community/plugin-announcements-backend'"'"'));' ./packages/backend/src/index.ts
+
