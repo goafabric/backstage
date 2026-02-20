@@ -76,13 +76,13 @@ backend.add(import('"'"'@backstage-community/plugin-tech-radar-backend'"'"'));' 
 yarn --cwd packages/backend add pg
 
 yarn --cwd packages/backend add @backstage/plugin-catalog-backend-module-gitlab
-
+                              
+## gitlab ci/cd
 yarn --cwd packages/app add @immobiliarelabs/backstage-plugin-gitlab
 yarn --cwd packages/backend add @immobiliarelabs/backstage-plugin-gitlab-backend
 
 grep -Fq "backend.add(import('@immobiliarelabs/backstage-plugin-gitlab-backend'));" ./packages/backend/src/index.ts || sed -i '' '/backend\.start()/i\
 backend.add(import('"'"'@immobiliarelabs/backstage-plugin-gitlab-backend'"'"'));' ./packages/backend/src/index.ts
-
 
 # kiali
 https://github.com/backstage/community-plugins/tree/main/workspaces/kiali/plugins/kiali
