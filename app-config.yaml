@@ -1,6 +1,8 @@
 app:
   title: Backstage
   baseUrl: http://localhost:3000
+  listen:
+    host: 0.0.0.0
 
   # Enable all packages by default, this will discover packages from packages/app/package.json
   packages: all
