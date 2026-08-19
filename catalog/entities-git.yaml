@@ -10,9 +10,9 @@ spec:
     - https://github.com/goafabric/person-service/blob/develop/catalog-info.yaml
 
     - https://github.com/goafabric/core-fe/blob/develop/catalog-info.yaml
-    - https://github.com/goafabric/core-service/blob/develop/catalog-info.yaml
-    - https://github.com/goafabric/catalog-service/blob/develop/catalog-info.yaml
-    - https://github.com/goafabric/invoice-process/blob/develop/catalog-info.yaml
+    - https://github.com/goafabric/core-service-quarkus/blob/develop/catalog-info.yaml
+    - https://github.com/goafabric/catalog-service-quarkus/blob/develop/catalog-info.yaml
+    - https://github.com/goafabric/invoice-process-quarkus/blob/develop/catalog-info.yaml
     - https://github.com/goafabric/event-dispatcher-service/blob/develop/catalog-info.yaml
 
     - https://github.com/goafabric/backstage/blob/develop/catalog/guidelines/catalog-info.yaml
