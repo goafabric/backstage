@@ -11,7 +11,7 @@ spec:
 
     - https://github.com/goafabric/core-fe/blob/develop/catalog-info.yaml
     - https://github.com/goafabric/core-service-quarkus/blob/develop/catalog-info.yaml
-    - https://github.com/goafabric/catalog-service-quarkus/blob/develop/catalog-info.yaml
+    - https://github.com/goafabric/catalog-batch-service-quarkus/blob/develop/catalog-info.yaml
     - https://github.com/goafabric/invoice-process-quarkus/blob/develop/catalog-info.yaml
     - https://github.com/goafabric/event-dispatcher-service/blob/develop/catalog-info.yaml
 
