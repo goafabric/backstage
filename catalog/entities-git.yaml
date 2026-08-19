@@ -7,7 +7,7 @@ spec:
   type: url
   targets:
 #    - https://github.com/goafabric/callee-service/blob/develop/catalog-info.yaml
-    - https://github.com/goafabric/person-service/blob/develop/catalog-info.yaml
+    - https://github.com/goafabric/person-service-quarkus/blob/develop/catalog-info.yaml
 
     - https://github.com/goafabric/core-fe/blob/develop/catalog-info.yaml
     - https://github.com/goafabric/core-service-quarkus/blob/develop/catalog-info.yaml
