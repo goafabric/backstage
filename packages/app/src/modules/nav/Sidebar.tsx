@@ -12,12 +12,33 @@ import { SidebarLogo } from './SidebarLogo';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { SidebarSearchModal } from '@backstage/plugin-search';
-import { UserSettingsSignInAvatar, Settings as SidebarSettings } from '@backstage/plugin-user-settings';
-{/* import { NotificationsSidebarItem } from '@backstage/plugin-notifications';  */}
+import {
+  Settings as SidebarSettings,
+  UserSettingsSignInAvatar,
+} from '@backstage/plugin-user-settings';
+
+{
+  /* import { NotificationsSidebarItem } from '@backstage/plugin-notifications';  */
+}
+
+// Page extensions that should NOT show up in the sidebar. The pages themselves
+// stay enabled (routes keep working); we just never render a nav item for them.
+// Since the nav is derived from page extensions, `nav-item:*: false` in app-config
+// no longer hides anything - taking the item without rendering it is the way to go.
+const HIDDEN_NAV_ITEMS = [
+  'page:scaffolder', // Create
+  'page:notifications', // Notifications
+  'page:catalog-graph', // Catalog Graph
+  'page:catalog-import', // Register Existing Component
+  'page:user-settings', // Settings (rendered manually further below)
+  'page:app-visualizer', // Visualizer
+  'page:search', // search
+];
 
 export const SidebarContent = NavContentBlueprint.make({
   params: {
     component: ({ navItems }) => {
+      HIDDEN_NAV_ITEMS.forEach(id => navItems.take(id));
       const nav = navItems.withComponent(item => (
         <SidebarItem
           icon={() => item.icon}
@@ -34,7 +55,6 @@ export const SidebarContent = NavContentBlueprint.make({
           <SidebarDivider />
           <SidebarGroup label="Menu" icon={<MenuIcon />}>
             {nav.take('page:catalog')}
-            {nav.take('page:scaffolder')}
             <SidebarDivider />
             <SidebarScrollWrapper>
               {nav.rest({ sortBy: 'title' })}

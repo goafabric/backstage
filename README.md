@@ -33,6 +33,8 @@ app-config.yaml
 app-config-catalogs.yaml
 app-config-production.yaml
 
+# mkdocs local
+pip install mkdocs-techdocs-core
 
 # plugins
 
